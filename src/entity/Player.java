@@ -3,6 +3,7 @@ package entity;
 import main.KeyHandler;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -21,13 +22,19 @@ public class Player extends Entity {
 
         setDefaultValues(); 
         getPlayerImage();
+
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = 32;
+        solidArea.height = 32;
     }
 
     public void setDefaultValues() {
         x = 100;
         y = 100;
         speed = 4;
-        //direction = "down";
+        direction = "";
     }
 
     public void getPlayerImage() {
@@ -41,19 +48,46 @@ public class Player extends Entity {
 
     public void update() {
         if (keyH.upPressed == true) {
-            y -= speed;
+            direction = "up";
+            //y -= speed;
         }
 
         if (keyH.downPressed == true) {
-            y += speed;
+            direction = "down";
+            //y += speed;
         }
 
         if (keyH.leftPressed == true) {
-            x -= speed;
+            direction = "left";
+            //x -= speed;
         }
          
         if (keyH.rightPressed == true) {
-            x += speed;
+            direction = "right";
+            //x += speed;
+        }
+
+        //CHECK TILE COLLSION
+        collisionOn = false;
+        gp.cChecker.checkTile(this);
+
+        //IF COLLISION IS FALSE, PLAYER CAN MOVE
+        if(collisionOn == false) {
+
+            switch (direction) {
+                case "up":
+                    y -= speed;
+                    break;
+                case "down":
+                    y += speed;
+                    break;
+                case "left":
+                    x -= speed;
+                    break;
+                case "right": 
+                    x += speed;
+                    break;
+            }
         }
     }
 
@@ -62,7 +96,25 @@ public class Player extends Entity {
         //.setColor(Color.white);
         //g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
-        BufferedImage image = img;
+        BufferedImage image = null;
+
+        switch (direction) {
+            case "":
+                image = img;
+                break;
+            case "up":
+                image = img;
+                break;
+            case "down":
+                image = img;
+                break;
+            case "left":
+                image = img;
+                break;
+            case "right":
+                image = img;
+                break;
+        }
 
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
     }

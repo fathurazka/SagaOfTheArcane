@@ -13,8 +13,8 @@ import main.GamePanel;
 public class TileManager {
     
     GamePanel gp;
-    Tile[] tile;
-    int mapTileNum[][];
+    public Tile[] tile;
+    public int mapTileNum[][];
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -32,6 +32,7 @@ public class TileManager {
 
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/wall.png"));
+            tile[1].collision = true;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,6 +72,7 @@ public class TileManager {
     }
 
     public void draw(Graphics2D g2) {
+
         int col = 0;
         int row = 0;
         int x = 0;
