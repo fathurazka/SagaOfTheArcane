@@ -81,9 +81,9 @@ public class Player extends Entity {
 
         //IF COLLISION IS FALSE, PLAYER CAN MOVE
         if(collisionOn == false) {
-        	if (direction.equals("") && (prevDirection.equals("left") || prevDirection.equals("right"))) {
-                direction = prevDirection; // Set direction to prevDirection
-            }
+//        	if (direction.equals("") && (prevDirection.equals("left") || prevDirection.equals("right"))) {
+//                direction = prevDirection; // Set direction to prevDirection
+//            }
             switch (direction) {
                 case "up":
                     worldY -= speed;
