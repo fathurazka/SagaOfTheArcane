@@ -15,11 +15,18 @@ public class Player extends Entity {
     
     GamePanel gp;
     KeyHandler keyH;
+    public final int screenX;
+    public final int screenY;
+    String prevDirection = "";
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
-
+        
+        screenX = gp.screenWidth/2;
+        screenY = gp.screenHeight/2;
+        		
+        		
         setDefaultValues(); 
         getPlayerImage();
 
@@ -31,8 +38,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
+        worldX = 1000;
+        worldY = 1000;
         speed = 4;
         direction = "";
     }
@@ -40,7 +47,8 @@ public class Player extends Entity {
     public void getPlayerImage() {
 
         try {
-            img = ImageIO.read(getClass().getResourceAsStream("/player/mainChar.png"));
+            right = ImageIO.read(getClass().getResourceAsStream("/player/mainChar_right.png"));
+            left = ImageIO.read(getClass().getResourceAsStream("/player/mainChar_left.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,22 +57,22 @@ public class Player extends Entity {
     public void update() {
         if (keyH.upPressed == true) {
             direction = "up";
-            //y -= speed;
+//            worldY -= speed;
         }
 
         if (keyH.downPressed == true) {
             direction = "down";
-            //y += speed;
+//            worldY += speed;
         }
 
         if (keyH.leftPressed == true) {
             direction = "left";
-            //x -= speed;
+//            worldX -= speed;
         }
          
         if (keyH.rightPressed == true) {
             direction = "right";
-            //x += speed;
+//            worldX += speed;
         }
 
         //CHECK TILE COLLSION
@@ -73,22 +81,26 @@ public class Player extends Entity {
 
         //IF COLLISION IS FALSE, PLAYER CAN MOVE
         if(collisionOn == false) {
-
+        	if (direction.equals("") && (prevDirection.equals("left") || prevDirection.equals("right"))) {
+                direction = prevDirection; // Set direction to prevDirection
+            }
             switch (direction) {
                 case "up":
-                    y -= speed;
+                    worldY -= speed;
                     break;
                 case "down":
-                    y += speed;
+                    worldY += speed;
                     break;
                 case "left":
-                    x -= speed;
+                    worldX -= speed;
                     break;
                 case "right": 
-                    x += speed;
+                    worldX += speed;
                     break;
             }
         }
+        
+        prevDirection = direction;
     }
 
     public void draw(Graphics2D g2) {
@@ -97,25 +109,41 @@ public class Player extends Entity {
         //g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
         BufferedImage image = null;
-
+        
+//        switch (direction) {
+//		case "": {
+//			switch (prevDirection) {
+//			case "left": {
+//				image = left;
+//			}
+//			default:
+//				throw new IllegalArgumentException("Unexpected value: " + key);
+//			}
+//			yield type;
+//		}
+//		default:
+//			throw new IllegalArgumentException("Unexpected value: " + prevDirection);
+//		}
+//        
+        
         switch (direction) {
             case "":
-                image = img;
+                image = right;
                 break;
             case "up":
-                image = img;
+                image = left;
                 break;
             case "down":
-                image = img;
+                image = right;
                 break;
             case "left":
-                image = img;
+                image = left;
                 break;
             case "right":
-                image = img;
+                image = right;
                 break;
         }
 
-        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 }
