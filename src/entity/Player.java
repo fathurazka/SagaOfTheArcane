@@ -19,7 +19,6 @@ public class Player extends Entity {
     public final int screenY;
 //    String prevDirection = "";
     public int hasGold = 0;
-//    int movementSpeed = 3;
     
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -49,6 +48,10 @@ public class Player extends Entity {
         worldY = 1000;
         speed = 4;
         direction = "";
+        
+        //PLAYER STATUS
+        maxLife = 7;
+        life = maxLife;
     }
 
     public void getPlayerImage() {
