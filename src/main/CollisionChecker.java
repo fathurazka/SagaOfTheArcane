@@ -1,5 +1,7 @@
 package main;
 
+import java.time.Year;
+
 import entity.Entity;
 
 public class CollisionChecker {
@@ -59,6 +61,99 @@ public class CollisionChecker {
                 }
                 break;
         }
+    }
+    
+    //Check object collision
+    public int checkObject(Entity entity, boolean player) {
+    	int index = 999;
+    	
+    	for (int i = 0; i < gp.obj.length; i++) {    		
+    		
+    		//scan obj array
+    		if(gp.obj[i] != null) {
+    			
+    			//GET ENTITY'S SOLID AREA POSITION
+    			entity.solidArea.x = entity.worldX + entity.solidArea.x;
+    			entity.solidArea.y = entity.worldY + entity.solidArea.y;
+    			
+    			//Get the object 'solid area position
+    			gp.obj[i].solidArea.x = gp.obj[i].worldX + gp.obj[i].solidArea.x;
+    			gp.obj[i].solidArea.y = gp.obj[i].worldY + gp.obj[i].solidArea.y;
+    			
+    			
+    			switch (entity.direction) {
+				case "up": 
+					entity.solidArea.y -= entity.speed;
+					if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+//						System.out.println("up collision!");
+						
+						//check jika solid object (wont use ig)
+						if (gp.obj[i].collision == true) {
+							entity.collisionOn =  true;
+						}
+						if (player == true) {
+							index = i;
+						}
+						
+					}
+					break;
 
+				case "down": 
+					entity.solidArea.y += entity.speed;
+					if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+//						System.out.println("down collision!");
+						
+						//check jika solid object (wont use ig, kalo mau dipake tambah collision on di kelas objek yang mau dijadiin solid)
+//						if (gp.obj[i].collision == true) {
+//							entity.collisionOn =  true;
+//						}
+						
+						//check if its player (npc cant pick up object)
+						if (player == true) {
+							index = i;
+						}
+					}
+					break;
+				
+				case "left": 
+					entity.solidArea.x -= entity.speed;
+					if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+//						System.out.println("left collision!");
+						
+						//check jika solid object (wont use ig)
+//						if (gp.obj[i].collision == true) {
+//							entity.collisionOn =  true;
+//						}
+						
+						
+						if (player == true) {
+							index = i;
+						}
+					}
+					break;
+				
+				case "right": 
+					entity.solidArea.x += entity.speed;
+					if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+//						System.out.println("right collision!");
+						
+						//check jika solid object (wont use ig)
+//						if (gp.obj[i].collision == true) {
+//							entity.collisionOn =  true;
+//						}
+						if (player == true) {
+							index = i;
+						}
+					}
+					break;
+				}
+    			entity.solidArea.x = entity.solidAreaDefaultX;
+    			entity.solidArea.y = entity.solidAreaDefaultY;
+    			gp.obj[i].solidArea.x = gp.obj[i].solidAreaDefaultX;    			
+    			gp.obj[i].solidArea.y = gp.obj[i].solidAreaDefaultY;    			
+        		
+    		}
+    	}
+    	return index;  	
     }
 }
