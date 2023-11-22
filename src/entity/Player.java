@@ -18,7 +18,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
 //    String prevDirection = "";
-    int hasGold = 0;
+    public int hasGold = 0;
 //    int movementSpeed = 3;
     
 
