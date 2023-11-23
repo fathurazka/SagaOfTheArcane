@@ -1,6 +1,7 @@
 package entity;
 
 import main.KeyHandler;
+import main.UtilityTool;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -55,14 +56,24 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage() {
-
-        try {
-            right = ImageIO.read(getClass().getResourceAsStream("/player/mainChar_right.png"));
-            left = ImageIO.read(getClass().getResourceAsStream("/player/mainChar_left.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        right = setup("mainChar_right");
+        left = setup("mainChar_left");
     }
+    
+    public BufferedImage setup(String imageName) {
+    	UtilityTool uTool = new UtilityTool();
+    	BufferedImage image = null;
+    	
+    	try {
+			image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName + ".png"));
+			image = uTool.scaledImage(image, gp.tileSize, gp.tileSize);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
+    	return image;
+    }
+    
 
     public void update() {
         if (keyH.upPressed == true) {
@@ -184,6 +195,6 @@ public class Player extends Entity {
                 break;
         }
 
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
     }
 }

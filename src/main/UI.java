@@ -36,9 +36,6 @@ public class UI {
 		health5 = healthBar.image5;
 		health6 = healthBar.image6;
 		health7 = healthBar.image7;
-		
-		
-		
 	}
 		
 	

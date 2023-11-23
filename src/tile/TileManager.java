@@ -1,6 +1,7 @@
 package tile;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,6 +10,7 @@ import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
+import main.UtilityTool;
 
 public class TileManager {
     
@@ -26,18 +28,31 @@ public class TileManager {
     }
 
     public void getTileImage() {
-        try {
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/test2.png"));   
-
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/testBackground.png"));
-            tile[1].collision = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //(index, fileName, collision)
+        setup(0, "test2", false);
+        setup(1, "testBackground", true);
+        
     }
-
+    
+    public void setup(int index, String imageName, boolean collision) {
+    	UtilityTool uTool = new UtilityTool();
+    	
+    	try {
+			tile[index] = new Tile();
+			tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imageName + ".png"));
+			tile[index].image = uTool.scaledImage(tile[index].image, gp.tileSize, gp.tileSize);
+			tile[index].collision = collision;			
+    		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
+    	
+    }
+    
+    
+    
+    
     public void loadMap() {
 
         try {
@@ -86,7 +101,7 @@ public class TileManager {
             int screenY = worldY - gp.player.worldY + gp.player.screenY;
             
             
-            g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(tile[tileNum].image, screenX, screenY, null);
             worldCol++;
 
             if(worldCol == gp.maxWorldCol) {
