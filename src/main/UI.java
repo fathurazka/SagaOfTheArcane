@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 
 import object.OBJ_Gold;
 import object.OBJ_Health;
-import object.SuperObject;
 
 public class UI {
 	
@@ -24,12 +23,10 @@ public class UI {
 //		(font, fontstyle, fontsize)
 		arial_40 = new Font("Arial", Font.PLAIN, 30);
 		
-		OBJ_Gold gold = new OBJ_Gold();
-		goldImage = gold.image;
+		OBJ_Gold gold = new OBJ_Gold(gp);
+		goldImage = gold.right;
 		
-		OBJ_Health healthBar = new OBJ_Health();
-		
-		
+		OBJ_Health healthBar = new OBJ_Health(gp);
 		health0 = healthBar.image;
 		health1 = healthBar.image1;
 		health2 = healthBar.image2;

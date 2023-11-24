@@ -4,16 +4,18 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class OBJ_Movement extends SuperObject{
+import entity.Entity;
+import main.GamePanel;
 
-	public OBJ_Movement(){
+public class OBJ_Movement extends Entity{
+
+	public OBJ_Movement(GamePanel gp){
+		super(gp);
 		
 		name = "Movement";
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/object/movement.png"));
-		} catch (IOException  e) {
-			e.printStackTrace();
-		}
+//		
+		right = setup("/object/movement");
+        left = setup("/object/movement");
 				
 	}
 }

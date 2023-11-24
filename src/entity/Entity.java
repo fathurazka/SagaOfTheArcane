@@ -19,11 +19,12 @@ public class Entity {
     public BufferedImage right;
     public BufferedImage left;
     public BufferedImage logo;
-    public static String direction;
+    public static String direction = "right";
     public int spriteCounter = 0;
     public int spriteNum = 1;
     public int actionLockCounter = 0;
 
+    
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
@@ -103,10 +104,13 @@ public class Entity {
             image = right;
             break;
         case "left":
-            image = left;
+            image = left;	
             break;
         case "right":
             image = right;
+            break;
+        default:
+            image = right; // or any other default value
             break;
         }
         

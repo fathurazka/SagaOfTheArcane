@@ -4,22 +4,21 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class OBJ_Health extends SuperObject {
-	public OBJ_Health(){
+import entity.Entity;
+import main.GamePanel;
+
+public class OBJ_Health extends Entity {
+	public OBJ_Health(GamePanel gp){
+		super(gp);
 		
 		name = "Health";
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/object/sprite_7.png"));
-			image1 = ImageIO.read(getClass().getResourceAsStream("/object/sprite_6.png"));
-			image2 = ImageIO.read(getClass().getResourceAsStream("/object/sprite_5.png"));
-			image3 = ImageIO.read(getClass().getResourceAsStream("/object/sprite_4.png"));
-			image4 = ImageIO.read(getClass().getResourceAsStream("/object/sprite_3.png"));
-			image5 = ImageIO.read(getClass().getResourceAsStream("/object/sprite_2.png"));
-			image6 = ImageIO.read(getClass().getResourceAsStream("/object/sprite_1.png"));
-			image7 = ImageIO.read(getClass().getResourceAsStream("/object/sprite0.png"));
-		} catch (IOException  e) {
-			e.printStackTrace();
-		}
-				
+		image = setup("/object/sprite_7");
+		image1 = setup("/object/sprite_6");
+		image2 = setup("/object/sprite_5");
+		image3 = setup("/object/sprite_4");
+		image4 = setup("/object/sprite_3");
+		image5 = setup("/object/sprite_2");
+		image6 = setup("/object/sprite_1");
+		image7 = setup("/object/sprite0");
 	}
 }
