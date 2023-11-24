@@ -14,7 +14,6 @@ import main.GamePanel;
 
 public class Player extends Entity {
     
-    GamePanel gp;
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
@@ -23,7 +22,8 @@ public class Player extends Entity {
     
 
     public Player(GamePanel gp, KeyHandler keyH) {
-        this.gp = gp;
+    	super(gp);
+    	
         this.keyH = keyH;
         
         screenX = gp.screenWidth/2;
@@ -56,24 +56,12 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage() {
-        right = setup("mainChar_right");
-        left = setup("mainChar_left");
-        logo = setup("logo");
+        right = setup("/player/mainChar_right");
+        left = setup("/player/mainChar_left");
+        logo = setup("/player/logo");
     }
     
-    public BufferedImage setup(String imageName) {
-    	UtilityTool uTool = new UtilityTool();
-    	BufferedImage image = null;
-    	
-    	try {
-			image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName + ".png"));
-			image = uTool.scaledImage(image, gp.tileSize, gp.tileSize);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    	
-    	return image;
-    }
+    
     
 
     public void update() {
