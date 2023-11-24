@@ -58,6 +58,7 @@ public class Player extends Entity {
     public void getPlayerImage() {
         right = setup("mainChar_right");
         left = setup("mainChar_left");
+        logo = setup("logo");
     }
     
     public BufferedImage setup(String imageName) {

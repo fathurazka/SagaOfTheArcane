@@ -9,6 +9,7 @@ public class Entity {
 
     public BufferedImage right;
     public BufferedImage left;
+    public BufferedImage logo;
     public static String direction;
 
     public Rectangle solidArea;

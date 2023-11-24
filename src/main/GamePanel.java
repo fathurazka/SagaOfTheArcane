@@ -46,6 +46,7 @@ public class GamePanel extends JPanel implements Runnable    {
     
     //GAME STATE
     public int gameState;
+    public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
     
@@ -62,7 +63,7 @@ public class GamePanel extends JPanel implements Runnable    {
     	
     	aSetter.setObject(); 
     	
-    	gameState = playState;
+    	gameState = titleState;
     }
     
     
@@ -128,23 +129,31 @@ public class GamePanel extends JPanel implements Runnable    {
         if (keyH.checkDrawTime == true) {
         	drawStart = System.nanoTime();        	
         }
-
-        //TILE
-        tileM.draw(g2);
         
-        //OBJECT
-        for (int i = 0; i < obj.length; i++) {
-        	if (obj[i] != null) {
-        		obj[i].draw(g2, this);
-        	}
+        //TITLE SCREEN
+        if (gameState == titleState) {
+        	ui.draw(g2);
+        }
+        else {
+        	//TILE
+            tileM.draw(g2);
+            
+            //OBJECT
+            for (int i = 0; i < obj.length; i++) {
+            	if (obj[i] != null) {
+            		obj[i].draw(g2, this);
+            	}
+            }
+            
+            //PLAYER
+            player.draw(g2);
+            
+            //UI
+            ui.draw(g2);
+            ui.drawPlayerLife(g2);
         }
         
-        //PLAYER
-        player.draw(g2);
         
-        //UI
-        ui.draw(g2);
-        ui.drawPlayerLife(g2);
         
         //DEBUG
         if (keyH.checkDrawTime == true) {

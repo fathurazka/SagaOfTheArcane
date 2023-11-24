@@ -16,6 +16,7 @@ public class UI {
 	Font arial_40;
 	BufferedImage goldImage;
 	BufferedImage health7, health6, health5, health4, health3, health2, health1, health0;
+	public int commandNum = 0;
 	
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -91,17 +92,76 @@ public class UI {
 		this.g2 = g2;
 		g2.setFont(arial_40);
 		g2.setColor(Color.white);
-		g2.drawImage(goldImage, 10, 40, gp.tileSize, gp.tileSize, null);
-		g2.drawString("x " + gp.player.hasGold, 60, 73); //Position (60,50)
 		
-		if(gp.gameState == gp.playState) {
-			
+		
+		//TITLE STATE
+		if (gp.gameState == gp.titleState) {
+			drawTitleScreen();
 		}
+		
+		
+		//PLAY STATE
+		if(gp.gameState == gp.playState) {
+			g2.drawImage(goldImage, 10, 40, gp.tileSize, gp.tileSize, null);
+			g2.drawString("x " + gp.player.hasGold, 60, 73); //Position (60,50)
+		}
+		
+		//PAUSE STATE
 		else if(gp.gameState == gp.pauseState) {
 			drawPauseScreen();
+			g2.drawImage(goldImage, 10, 40, gp.tileSize, gp.tileSize, null);
+			g2.drawString("x " + gp.player.hasGold, 60, 73); //Position (60,50)
 		}
 		
 		
+	}
+	
+	public void drawTitleScreen() {
+		
+		//TITLE NAME
+		g2.setFont(arial_40);
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,30F));
+		String text = "Saga of The Arcane";
+		int x = getXForCenteredText(text);
+		int y = gp.tileSize*6;
+		
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		
+		//IMAGE
+		x = gp.screenWidth/2 - (gp.tileSize*2)/2;
+		y -= gp.tileSize*3;
+		g2.drawImage(gp.player.logo, x, y, gp.tileSize*2, gp.tileSize*2, null);
+		
+		//MENU
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,24F));
+		
+		text = "NEW GAME";
+		x = getXForCenteredText(text);
+		y += gp.tileSize*4 + 25;
+		g2.drawString(text, x, y);
+		
+		if (commandNum == 0) {
+			g2.drawString(">", x - gp.tileSize + 20, y);
+		}
+		
+		text = "CONTINUE GAME";
+		x = getXForCenteredText(text);
+		y += gp.tileSize;
+		g2.drawString(text, x, y);
+		
+		if (commandNum == 1) {
+			g2.drawString(">", x - gp.tileSize + 20, y);
+		}
+		
+		text = "QUIT";
+		x = getXForCenteredText(text);
+		y += gp.tileSize;
+		g2.drawString(text, x, y);
+		
+		if (commandNum == 2) {
+			g2.drawString(">", x - gp.tileSize + 20, y);
+		}
 	}
 	
 	public void drawPauseScreen() {
