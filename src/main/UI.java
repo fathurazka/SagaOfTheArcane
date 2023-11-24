@@ -145,21 +145,12 @@ public class UI {
 			g2.drawString(">", x - gp.tileSize + 20, y);
 		}
 		
-		text = "CONTINUE GAME";
-		x = getXForCenteredText(text);
-		y += gp.tileSize;
-		g2.drawString(text, x, y);
-		
-		if (commandNum == 1) {
-			g2.drawString(">", x - gp.tileSize + 20, y);
-		}
-		
 		text = "QUIT";
 		x = getXForCenteredText(text);
 		y += gp.tileSize;
 		g2.drawString(text, x, y);
 		
-		if (commandNum == 2) {
+		if (commandNum == 1) {
 			g2.drawString(">", x - gp.tileSize + 20, y);
 		}
 	}
