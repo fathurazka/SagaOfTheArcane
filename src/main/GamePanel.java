@@ -47,6 +47,8 @@ public class GamePanel extends JPanel implements Runnable    {
     //ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[10]; 
+    public Entity enemy[] = new Entity[200]; //200 itu number of monster yang bisa didisplay dalam 1 waktu
+    
 //    
     ArrayList<Entity> entityList = new ArrayList<>();
     
@@ -70,7 +72,7 @@ public class GamePanel extends JPanel implements Runnable    {
     public void setupGame() {
     	
     	aSetter.setObject();
-    	
+    	aSetter.setEnemy();
     	gameState = titleState;
     }
     
@@ -120,7 +122,14 @@ public class GamePanel extends JPanel implements Runnable    {
     public void update() {
     	
     	if (gameState == playState) {
-    		player.update();    		
+    		player.update();
+    		
+    		//enemy
+    		for(int i = 0; i < enemy.length; i++) {
+    			if(enemy[i] != null) {
+    				enemy[i].update();
+    			}
+    		}
     	}
     	if (gameState == pauseState) {
     		//nothing
@@ -155,6 +164,13 @@ public class GamePanel extends JPanel implements Runnable    {
             		entityList.add(obj[i]);
             	}
             }
+            
+            for(int i = 0; i < enemy.length; i++) {
+            	if(enemy[i] != null) {
+            		entityList.add(enemy[i]);
+            	}
+            }
+            
             
             //SORT
             Collections.sort(entityList, new Comparator<Entity>() {

@@ -23,7 +23,9 @@ public class Entity {
     public int spriteCounter = 0;
     public int spriteNum = 1;
     public int actionLockCounter = 0;
-
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
+    public int type; //0 = player, 1 = enemy
     
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
@@ -33,6 +35,7 @@ public class Entity {
     public BufferedImage image, image1, image2, image3, image4, image5, image6, image7;
 	public String name;
 	public boolean collision = false;
+	
     
     //CHARACTER STATUS
     public int maxLife;
@@ -52,9 +55,19 @@ public class Entity {
     	collisionOn = false;
     	gp.cChecker.checkTile(this);
     	gp.cChecker.checkObject(this, false);
-    	gp.cChecker.checkPlayer(this);
+    	gp.cChecker.checkEntity(this, gp.enemy);
+    	boolean contactPlayer = gp.cChecker.checkPlayer(this);
     	
-    
+    	if(this.type == 1 && contactPlayer == true) {
+    		if(gp.player.invincible == false) {
+    			gp.player.life -= 1;
+    			gp.player.invincible = true;
+    		}
+    	}
+    	
+    	
+//    	System.out.println("Collision with player: " + collisionOn);
+    	
     	//IF COLLISION IS FALSE, PLAYER CAN MOVE
     	if(collisionOn == false) {
         	 switch (direction) {
@@ -108,9 +121,6 @@ public class Entity {
             break;
         case "right":
             image = right;
-            break;
-        default:
-            image = right; // or any other default value
             break;
         }
         
