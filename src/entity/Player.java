@@ -76,25 +76,25 @@ public class Player extends Entity {
     
 
     public void update() {
-        if (keyH.upPressed == true) {
-            direction = "up";
-//            worldY -= speed;
-        }
+        if (keyH.upPressed == true && worldY - speed >= gp.tileSize) {
+        direction = "up";
+        worldY -= speed;
+    }
 
-        if (keyH.downPressed == true) {
-            direction = "down";
-//            worldY += speed;
-        }
+    if (keyH.downPressed == true && worldY + speed <= 2304) {
+        direction = "down";
+        worldY += speed;
+    }
 
-        if (keyH.leftPressed == true) {
-            direction = "left";
-//            worldX -= speed;
-        }
-         
-        if (keyH.rightPressed == true) {
-            direction = "right";
-//            worldX += speed;
-        }
+    if (keyH.leftPressed == true && worldX - speed >= gp.tileSize) {
+        direction = "left";
+        worldX -= speed;
+    }
+     
+    if (keyH.rightPressed == true && worldX + speed <= 2304) {
+        direction = "right";
+        worldX += speed;
+    }
 
         //CHECK TILE COLLSION
         collisionOn = false;
@@ -111,20 +111,20 @@ public class Player extends Entity {
 //        	if (direction.equals("") && (prevDirection.equals("left") || prevDirection.equals("right"))) {
 //                direction = prevDirection; // Set direction to prevDirection
 //            }
-            switch (direction) {
-                case "up":
-                    worldY -= speed;
-                    break;
-                case "down":
-                    worldY += speed;
-                    break;
-                case "left":
-                    worldX -= speed;
-                    break;
-                case "right": 
-                    worldX += speed;
-                    break;
-            }
+            // switch (direction) {
+            //     case "up":
+            //         worldY -= speed;
+            //         break;
+            //     case "down":
+            //         worldY += speed;
+            //         break;
+            //     case "left":
+            //         worldX -= speed;
+            //         break;
+            //     case "right": 
+            //         worldX += speed;
+            //         break;
+            // }
         }
         
 //        prevDirection = direction;
