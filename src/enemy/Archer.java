@@ -5,14 +5,15 @@ import java.util.Random;
 import entity.Entity;
 import main.GamePanel;
 
-public class Skeleton extends Entity implements Enemy{
+public class Archer extends Entity implements Enemy {
+	public Enemy enemy;
 
-	public Skeleton(GamePanel gp) {
+	public Archer(GamePanel gp) {
 		super(gp);
 		
 		type = 1;
-		name = "Skeleton";
-		speed = 1;
+		name = "Wolf";
+		speed = 2;
 		maxLife = 4;
 		life = maxLife;
 		
@@ -28,8 +29,8 @@ public class Skeleton extends Entity implements Enemy{
 	}
 	
 	public void getImage() {
-		right = setup("/enemy/skeletonEnemy");
-		left = setup("/enemy/skeletonEnemy");
+		right = setup("/enemy/archerEnemy");
+		left = setup("/enemy/archerEnemy");
 	}
 	
 	

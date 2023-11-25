@@ -7,11 +7,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import enemy.Enemy;
 import main.GamePanel;
 import main.UtilityTool;
 
 public class Entity {
-    GamePanel gp;
+    public GamePanel gp;
 	
 	public int worldX, worldY;
     public int speed;
@@ -45,12 +46,17 @@ public class Entity {
     	this.gp = gp;
     }
     
-    public void setAction() {
+    public void chasePlayer() {
     	
     }
     
     public void update() {
-    	setAction();
+    	//setAction();
+
+        //chasePlayer();
+
+        chasePlayer();
+    
     	
     	collisionOn = false;
     	gp.cChecker.checkTile(this);
@@ -69,22 +75,22 @@ public class Entity {
 //    	System.out.println("Collision with player: " + collisionOn);
     	
     	//IF COLLISION IS FALSE, PLAYER CAN MOVE
-    	if(collisionOn == false) {
-        	 switch (direction) {
-                 case "up":
-                     worldY -= speed;
-                     break;
-                 case "down":
-                     worldY += speed;
-                     break;
-                 case "left":
-                     worldX -= speed;
-                     break;
-                 case "right": 
-                     worldX += speed;
-                     break;
-             }
-        }
+    	// if(collisionOn == false) {
+        // 	 switch (direction) {
+        //          case "up":
+        //              worldY -= speed;
+        //              break;
+        //          case "down":
+        //              worldY += speed;
+        //              break;
+        //          case "left":
+        //              worldX -= speed;
+        //              break;
+        //          case "right": 
+        //              worldX += speed;
+        //              break;
+        //      }
+        // }
     	
     	spriteCounter++;
     	if (spriteCounter > 12) {

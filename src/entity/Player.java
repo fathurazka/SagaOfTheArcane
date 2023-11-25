@@ -22,6 +22,7 @@ public class Player extends Entity {
     public final int screenY;
 //    String prevDirection = "";
     public int hasGold = 0;
+    BufferedImage prevImage = null;
     
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -179,6 +180,7 @@ public class Player extends Entity {
 
         BufferedImage image = null;
         
+        
 //        switch (direction) {
 //		case "": {
 //			switch (prevDirection) {
@@ -193,23 +195,33 @@ public class Player extends Entity {
 //		default:
 //			throw new IllegalArgumentException("Unexpected value: " + prevDirection);
 //		}
-//        
+//       
+    
+
+
+
+        
+
         
         switch (direction) {
             case "":
-                image = right;
+                image = prevImage != null ? prevImage : right;
                 break;
             case "up":
-                image = left;
+                image = prevImage;
+                image = prevImage != null ? prevImage : right;
                 break;
             case "down":
-                image = right;
+                image = prevImage;
+                image = prevImage != null ? prevImage : right;
                 break;
             case "left":
                 image = left;
+                prevImage = left;
                 break;
             case "right":
                 image = right;
+                prevImage = right;
                 break;
         }
         

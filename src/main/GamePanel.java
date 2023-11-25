@@ -11,6 +11,9 @@ import java.util.Comparator;
 
 import javax.swing.JPanel;
 
+import enemy.Archer;
+import enemy.Skeleton;
+import enemy.Wolf;
 import entity.Entity;
 import entity.Player;
 import tile.TileManager;
@@ -125,9 +128,9 @@ public class GamePanel extends JPanel implements Runnable    {
     		player.update();
     		
     		//enemy
-    		for(int i = 0; i < enemy.length; i++) {
-    			if(enemy[i] != null) {
-    				enemy[i].update();
+    		for(Entity entity : enemy) {
+    			if(entity != null) {
+    				entity.update();
     			}
     		}
     	}
