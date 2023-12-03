@@ -28,8 +28,8 @@ public class Wolf extends Entity implements Enemy{
 	}
 	
 	public void getImage() {
-		right = setup("/enemy/wolfEnemy");
-		left = setup("/enemy/wolfEnemy");
+		right = setup("/enemy/wolfEnemy", gp.tileSize, gp.tileSize);
+		left = setup("/enemy/wolfEnemy", gp.tileSize, gp.tileSize);
 	}
 
 	

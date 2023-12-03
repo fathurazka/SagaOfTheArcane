@@ -14,8 +14,8 @@ public class OBJ_Movement extends Entity{
 		
 		name = "Movement";
 //		
-		right = setup("/object/movement");
-        left = setup("/object/movement");
+		right = setup("/object/movement", gp.tileSize, gp.tileSize);
+        left = setup("/object/movement", gp.tileSize, gp.tileSize);
 				
 	}
 }

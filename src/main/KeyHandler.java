@@ -9,7 +9,7 @@ public class KeyHandler implements KeyListener {
 
 	GamePanel gp;
 	
-    public boolean upPressed, downPressed, leftPressed, rightPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
     
     //DEBUG
     boolean checkDrawTime = false;
@@ -61,42 +61,49 @@ public class KeyHandler implements KeyListener {
     	}
     	
     	
-    	//PLAYER STATE
-        if (code == KeyEvent.VK_W) {
-            upPressed = true;
-        }
-
-        if (code == KeyEvent.VK_S) {
-            downPressed = true;
-        }
-
-        if (code == KeyEvent.VK_A) {
-            leftPressed = true;
-        }
-
-        if (code == KeyEvent.VK_D) {
-            rightPressed = true;
-        }
-        
-        //P to pause
-        if (code == KeyEvent.VK_ESCAPE) {
-            if(gp.gameState == gp.playState) {
-            	gp.gameState = gp.pauseState;
+    	//GAME STATE
+    	else if (gp.gameState == gp.playState) {
+            if (code == KeyEvent.VK_W) {
+                upPressed = true;
             }
-            else if(gp.gameState == gp.pauseState) {
-            	gp.gameState = gp.playState;
+
+            if (code == KeyEvent.VK_S) {
+                downPressed = true;
             }
-        }
-        
-        //DEBUG
-        if (code == KeyEvent.VK_T) {
-            if (checkDrawTime == false) {
-            	checkDrawTime = true;
+
+            if (code == KeyEvent.VK_A) {
+                leftPressed = true;
             }
-            else if (checkDrawTime == true) {
-				checkDrawTime = false;
-			}
-        }
+
+            if (code == KeyEvent.VK_D) {
+                rightPressed = true;
+            }
+            if (code == KeyEvent.VK_L) {
+                enterPressed = true;
+            }
+            
+            //P to pause
+            if (code == KeyEvent.VK_ESCAPE) {
+                if(gp.gameState == gp.playState) {
+                	gp.gameState = gp.pauseState;
+                }
+                else if(gp.gameState == gp.pauseState) {
+                	gp.gameState = gp.playState;
+                }
+            }
+            
+            
+            //DEBUG
+            if (code == KeyEvent.VK_T) {
+                if (checkDrawTime == false) {
+                	checkDrawTime = true;
+                }
+                else if (checkDrawTime == true) {
+    				checkDrawTime = false;
+    			}
+            }
+    		
+    	}
        
         
     }

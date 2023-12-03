@@ -29,8 +29,8 @@ public class Archer extends Entity implements Enemy {
 	}
 	
 	public void getImage() {
-		right = setup("/enemy/archerEnemy");
-		left = setup("/enemy/archerEnemy");
+		right = setup("/enemy/archerEnemy", gp.tileSize, gp.tileSize);
+		left = setup("/enemy/archerEnemy", gp.tileSize, gp.tileSize);
 	}
 	
 	

@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.desktop.AboutHandler;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -24,6 +25,7 @@ public class Player extends Entity {
     public int hasGold = 0;
     BufferedImage prevImage = null;
     
+    
 
     public Player(GamePanel gp, KeyHandler keyH) {
     	super(gp);
@@ -36,6 +38,7 @@ public class Player extends Entity {
         		
         setDefaultValues(); 
         getPlayerImage();
+        getPlayerAttackImage();
 
         solidArea = new Rectangle();
         solidArea.x = 8;
@@ -46,6 +49,10 @@ public class Player extends Entity {
         
         solidArea.width = 32;
         solidArea.height = 32;
+        
+        attackArea.width = 36; //nanti diganti tergantung weapon
+        attackArea.height = 36; 
+        
     }
 
     public void setDefaultValues() {
@@ -60,16 +67,26 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage() {
-        right = setup("/player/mainChar_right");
-        left = setup("/player/mainChar_left");
-        logo = setup("/player/logo");
+        right = setup("/player/mainChar_right", gp.tileSize, gp.tileSize);
+        left = setup("/player/mainChar_left", gp.tileSize, gp.tileSize);
+        logo = setup("/player/logo", gp.tileSize, gp.tileSize);
+    }
+    
+    public void getPlayerAttackImage() {
+    	attackUp = setup("/player/testChar", gp.tileSize, gp.tileSize * 2);
+    	attackDown = setup("/player/testChar", gp.tileSize, gp.tileSize * 2);
+    	attackRight = setup("/player/testChar", gp.tileSize, gp.tileSize * 2);
+    	attackLeft = setup("/player/testChar", gp.tileSize, gp.tileSize * 2);
     }
     
     
     
-
     public void update() {
-        if (keyH.upPressed == true && worldY - speed >= gp.tileSize) {
+    if (attacking== true) {
+            attacking();
+    }
+    	
+    if (keyH.upPressed == true && worldY - speed >= gp.tileSize) {
         direction = "up";
         worldY -= speed;
     }
@@ -101,8 +118,7 @@ public class Player extends Entity {
         //CHECK ENEMY COLLISION
         int enemyIndex = gp.cChecker.checkEntity(this, gp.enemy);  
         contactEnemy(enemyIndex);
-        
-        
+        interactEnemy(enemyIndex);        
 
         //IF COLLISION IS FALSE, PLAYER CAN MOVE
         if (collisionOn) {
@@ -133,7 +149,65 @@ public class Player extends Entity {
         	}
         }
     }
-
+    
+    
+    public void attacking() {
+    	spriteCounter++;
+    	if(spriteCounter <= 5) {
+    		spriteNum = 1;
+    	}
+    	if(spriteCounter > 5 && spriteCounter <= 25){
+    		spriteNum = 2;
+    		
+    		int currentWorldX = worldX;
+    		int currentWorldY = worldY;
+    		int solidAreaWidth = solidArea.width;
+    		int solidAreaHeight = solidArea.height;
+    		
+    		//adjust player's worldX/Y for the attackArea
+    		switch (direction) {
+    		case "up": 
+				worldY -= attackArea.height;
+				break;
+    		case "down": 
+				worldY += attackArea.height;
+				break;
+    		case "left": 
+				worldX -= attackArea.width;
+				break;
+    		case "right": 
+				worldX += attackArea.width;
+				break;
+    		}
+    		
+    		//attackArea become solidArea
+    		solidArea.width = attackArea.width;
+    		solidArea.height = attackArea.height;
+    		
+    		//Check enemy collision with the updated worldX, worldY, and solidArea
+    		int monsterIndex = gp.cChecker.checkEntity(this, gp.enemy);
+    		damageEnemy(monsterIndex);
+    		
+    		
+    		//after checking collision, restore original data
+    		worldX = currentWorldX;
+    		worldY = currentWorldY;
+    		solidArea.width = solidAreaWidth;
+    		solidArea.height = solidAreaHeight;
+    		
+    		
+    		
+    	}
+    	if(spriteCounter > 25) {
+    		spriteNum = 1;
+    		spriteCounter = 0;
+    		attacking = false;
+    	}
+    	
+    	
+    }
+    
+    
     //PICK UP OBJECT
     public void pickUpObject(int i) {
     	if (i != 999) {
@@ -153,9 +227,16 @@ public class Player extends Entity {
     		}
     		
     	}
-    	
-    	
     }
+    
+    
+    public void interactEnemy(int i) {
+    	if(gp.keyH.enterPressed == true) {
+    		attacking = true;
+    	}
+    	gp.keyH.enterPressed = false;
+    }
+    
     
     //ngasih damage ke player
     public void contactEnemy(int i) {
@@ -164,11 +245,24 @@ public class Player extends Entity {
     			life -= 1;
     			invincible = true;
     		}
-    		
-    		
+    	}
+    }
+    
+    public void damageEnemy(int i) {
+    	if (i != 999) {
+    		if(gp.enemy[i].invincible == false) {
+    			gp.enemy[i].life -= 1;
+    			gp.enemy[i].invincible = true;
+    			
+    			if(gp.enemy[i].life <= 0) {
+    				gp.enemy[i] = null;
+    			}
+    			
+    		}
     		
     	}
     }
+    
     
     
     
@@ -197,40 +291,65 @@ public class Player extends Entity {
 //		}
 //       
     
-
-
-
         
-
+        int tempScreenX = screenX;
+        int tempScreenY = screenY;
         
         switch (direction) {
             case "":
-                image = prevImage != null ? prevImage : right;
+                if (attacking == false) {
+                	image = prevImage != null ? prevImage : right;
+                }
+                if (attacking == true) {
+                	tempScreenY = screenY - gp.tileSize;
+                	image = attackUp;
+                }
                 break;
             case "up":
-                image = prevImage;
-                image = prevImage != null ? prevImage : right;
+            	if (attacking == false) {
+            		image = prevImage;
+                    image = prevImage != null ? prevImage : right;
+                }
+                if (attacking == true) {
+                	image = attackUp;
+                }
                 break;
             case "down":
-                image = prevImage;
-                image = prevImage != null ? prevImage : right;
-                break;
+            	if (attacking == false) {
+            		image = prevImage;
+                    image = prevImage != null ? prevImage : right;
+                }
+                if (attacking == true) {
+                	image = attackDown;
+                }
+            	break;
             case "left":
-                image = left;
-                prevImage = left;
-                break;
+            	if (attacking == false) {
+            		image = left;
+                    prevImage = left;
+                }
+            	if (attacking == true) {
+            		tempScreenX = screenX - gp.tileSize;
+            		image = attackLeft;
+                }
+            	break;
             case "right":
-                image = right;
-                prevImage = right;
+            	if (attacking == false) {
+                	image = right;
+                    prevImage = right;
+                }
+            	if (attacking == true) {
+                	image = attackRight;
+                }
+
                 break;
         }
         
         if(invincible == true) {
         	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f)); //buat player transparant ketika terkena musuh (invincible == tru)
-        
         }
         
-        g2.drawImage(image, screenX, screenY, null);
+        g2.drawImage(image, tempScreenX, tempScreenY, null);
         
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         

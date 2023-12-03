@@ -13,7 +13,7 @@ public class OBJ_Gold extends Entity {
 		
 		name = "Gold";
 //		
-		right = setup("/object/gold");
-        left = setup("/object/gold");
+		right = setup("/object/gold", gp.tileSize, gp.tileSize);
+        left = setup("/object/gold", gp.tileSize, gp.tileSize);
 	}
 }

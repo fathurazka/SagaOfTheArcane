@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable    {
 
     //SYSTEM
     TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler(this);
+    public KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
     // ini gatau kenapa error kalo dihapus  )
@@ -192,10 +192,7 @@ public class GamePanel extends JPanel implements Runnable    {
             }
             
             //EMPTY ENTITY LIST
-            for (int i = 0; i < entityList.size(); i++) {
-            	entityList.remove(i);
-            }
-            
+            entityList.clear();        
             
             //UI
             ui.draw(g2);

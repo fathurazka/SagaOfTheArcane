@@ -28,8 +28,8 @@ public class Skeleton extends Entity implements Enemy{
 	}
 	
 	public void getImage() {
-		right = setup("/enemy/skeletonEnemy");
-		left = setup("/enemy/skeletonEnemy");
+		right = setup("/enemy/skeletonEnemy", gp.tileSize, gp.tileSize);
+		left = setup("/enemy/skeletonEnemy", gp.tileSize, gp.tileSize);
 	}
 	
 	

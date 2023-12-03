@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -13,24 +14,31 @@ import main.UtilityTool;
 
 public class Entity {
     public GamePanel gp;
-	
-	public int worldX, worldY;
-    public int speed;
     
     public BufferedImage right;
     public BufferedImage left;
     public BufferedImage logo;
-    public static String direction = "right";
-    public int spriteCounter = 0;
-    public int spriteNum = 1;
-    public int actionLockCounter = 0;
-    public boolean invincible = false;
-    public int invincibleCounter = 0;
-    public int type; //0 = player, 1 = enemy
-    
+    public BufferedImage attack;
+    public BufferedImage attackUp, attackDown, attackLeft, attackRight;
+        
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
+    public Rectangle attackArea = new Rectangle (0, 0, 0, 0);
+    
+    
+    
+    //STATE
+    public int worldX, worldY;
+    public static String direction = "right";
+    public int spriteNum = 1;
     public boolean collisionOn = false;
+    public boolean invincible = false;
+    boolean attacking = false;
+    
+    //COUNTER
+    public int spriteCounter = 0;
+    public int actionLockCounter = 0;    
+    public int invincibleCounter = 0;
     
     //VAR BUAT OBJECT
     public BufferedImage image, image1, image2, image3, image4, image5, image6, image7;
@@ -41,6 +49,8 @@ public class Entity {
     //CHARACTER STATUS
     public int maxLife;
     public int life;
+    public int type; //0 = player, 1 = enemy
+    public int speed;
     
     public Entity (GamePanel gp) {
     	this.gp = gp;
@@ -102,6 +112,14 @@ public class Entity {
     		}
     		spriteCounter = 0;
     	}
+    	
+    	if(invincible == true) {
+        	invincibleCounter++;
+        	if(invincibleCounter > 40) {
+        		invincible = false;
+        		invincibleCounter = 0;
+        	}
+        }
     }
     
     
@@ -130,17 +148,23 @@ public class Entity {
             break;
         }
         
+        if(invincible == true) {
+        	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f)); //buat enemy transparant ketika terkena damage (invincible == true)
+        }
+        
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
     
     
-    public BufferedImage setup(String imagePath) {
+    public BufferedImage setup(String imagePath, int width, int height) {
     	UtilityTool uTool = new UtilityTool();
     	BufferedImage image = null;
     	
     	try {
 			image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
-			image = uTool.scaledImage(image, gp.tileSize, gp.tileSize);
+			image = uTool.scaledImage(image, width, height);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
