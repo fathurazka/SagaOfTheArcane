@@ -122,16 +122,24 @@ public class GamePanel extends JPanel implements Runnable    {
 
     }
 
+    
     public void update() {
     	
     	if (gameState == playState) {
     		player.update();
     		
     		//enemy
-    		for(Entity entity : enemy) {
-    			if(entity != null) {
-    				entity.update();
-    			}
+    		for (int i = 0; i < enemy.length; i++) {
+    		    Entity entity = enemy[i];
+    		    if (entity != null) {
+    		        if (entity.alive == true && entity.dying == false) {
+    		            entity.update();
+    		        }
+
+    		        if (entity.dying == true) {
+    		        	enemy[i] = null;
+    		        }
+    		    }
     		}
     	}
     	if (gameState == pauseState) {
@@ -139,7 +147,9 @@ public class GamePanel extends JPanel implements Runnable    {
     	}
     	
     }
-
+    
+    int type;
+    
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -170,8 +180,7 @@ public class GamePanel extends JPanel implements Runnable    {
             
             for(int i = 0; i < enemy.length; i++) {
             	if(enemy[i] != null) {
-            		entityList.add(enemy[i]);
-            	}
+            		entityList.add(enemy[i]);            	}
             }
             
             

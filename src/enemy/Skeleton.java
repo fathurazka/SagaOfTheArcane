@@ -13,7 +13,7 @@ public class Skeleton extends Entity implements Enemy{
 		type = 1;
 		name = "Skeleton";
 		speed = 1;
-		maxLife = 4;
+		maxLife = 8;
 		life = maxLife;
 		
 		//set sendiri solid area tergantung ukuran enemy

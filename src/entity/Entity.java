@@ -1,12 +1,15 @@
 package entity;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import org.w3c.dom.css.RGBColor;
 
 import enemy.Enemy;
 import main.GamePanel;
@@ -34,11 +37,18 @@ public class Entity {
     public boolean collisionOn = false;
     public boolean invincible = false;
     boolean attacking = false;
+    public boolean alive = true;
+    public boolean dying = false;
+    boolean hpBarOn = false;
+    int hpBarCounter = 0;
+    
     
     //COUNTER
     public int spriteCounter = 0;
     public int actionLockCounter = 0;    
     public int invincibleCounter = 0;
+    int dyingCounter = 0;
+    
     
     //VAR BUAT OBJECT
     public BufferedImage image, image1, image2, image3, image4, image5, image6, image7;
@@ -62,9 +72,6 @@ public class Entity {
     
     public void update() {
     	//setAction();
-
-        //chasePlayer();
-
         chasePlayer();
     
     	
@@ -148,14 +155,89 @@ public class Entity {
             break;
         }
         
+        //Monster HP Bar
+        if (this.type == 1 && hpBarOn == true) { // Menambahkan kondisi: hanya gambar HP bar jika jenis entity adalah musuh (type == 1)
+        	double oneScale = (double) gp.tileSize/maxLife;
+        	double hpBarValue = oneScale * life;
+        	
+        	
+        	g2.setColor(new Color(35, 35, 35));
+            g2.fillRect(screenX - 1, screenY - 16, gp.tileSize +2 , 10);
+        	
+        	g2.setColor(new Color(255, 0, 30));
+            g2.fillRect(screenX, screenY - 15, (int)hpBarValue, 8);
+            
+            hpBarCounter++;
+            
+            if(hpBarCounter > 600) {
+            	hpBarCounter = 0;
+            	hpBarOn = false;
+            }
+            
+        }
+        
+        
+        
+        
         if(invincible == true) {
+        	hpBarOn = true;
+        	hpBarCounter = 0;
+        	
         	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f)); //buat enemy transparant ketika terkena damage (invincible == true)
         }
+        
+//        if(dying == true) {
+//        	dyingAnimation(g2);
+//        }
         
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
         
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
+    
+    
+//    public void dyingAnimation(Graphics2D g2) {
+//    	dyingCounter++;
+//    	
+//    	int i = 5;
+//    	
+//    	if(dyingCounter <= i) {
+//    		changeAlpha(g2, 0f);
+//    	}
+//    	if(dyingCounter > i && dyingCounter <= i*2) {
+//    		changeAlpha(g2, 1f);
+//    	}
+//    	if(dyingCounter > i*2 && dyingCounter <= i*3) {
+//    		changeAlpha(g2, 0f);
+//    	}
+//    	if(dyingCounter > i*3 && dyingCounter <= i*4) {
+//    		changeAlpha(g2, 1f);
+//    	}
+//    	if(dyingCounter > i*4 && dyingCounter <= i*5) {
+//    		changeAlpha(g2, 0f);
+//    	}
+//    	if(dyingCounter > i*5 && dyingCounter <= i*6) {
+//    		changeAlpha(g2, 1f);
+//    	}
+//    	if(dyingCounter > i*6 && dyingCounter <= i*7) {
+//    		changeAlpha(g2, 0f);
+//    	}
+//    	if(dyingCounter > i*7 && dyingCounter <= i*8) {
+//    		changeAlpha(g2, 1f);
+//    	}
+//    	if(dyingCounter > i*8) {
+//    		dying = false;
+//    		alive = false;
+//    	}
+//    }
+    
+    
+    
+    
+    public void changeAlpha (Graphics2D g2, float alphaValue){
+    	g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
+    }
+    
     
     
     public BufferedImage setup(String imagePath, int width, int height) {

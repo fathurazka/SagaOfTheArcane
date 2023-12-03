@@ -255,9 +255,8 @@ public class Player extends Entity {
     			gp.enemy[i].invincible = true;
     			
     			if(gp.enemy[i].life <= 0) {
-    				gp.enemy[i] = null;
+    				gp.enemy[i].dying = true ;
     			}
-    			
     		}
     		
     	}
