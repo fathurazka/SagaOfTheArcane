@@ -53,6 +53,8 @@ public class GamePanel extends JPanel implements Runnable    {
     public Entity enemy[] = new Entity[200]; //200 itu number of monster yang bisa didisplay dalam 1 waktu
     
 //    
+    public ArrayList<Entity> projectileList = new ArrayList<>();
+    
     ArrayList<Entity> entityList = new ArrayList<>();
     
     
@@ -77,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable    {
     	aSetter.setObject();
     	aSetter.setEnemy();
     	gameState = titleState;
+    	
     }
     
     
@@ -141,7 +144,23 @@ public class GamePanel extends JPanel implements Runnable    {
     		        }
     		    }
     		}
+    		
+    		//projectile
+    		for (int i = 0; i < projectileList.size(); i++) {
+    		    if (projectileList.get(i) != null) {
+    		        if (projectileList.get(i).alive == true) {
+    		        	projectileList.get(i).update();
+    		        }
+
+    		        if (projectileList.get(i).alive == false) {
+    		        	projectileList.remove(i);
+    		        }
+    		    }
+    		}
+    		
     	}
+    	
+    	
     	if (gameState == pauseState) {
     		//nothing
     	}
@@ -181,6 +200,11 @@ public class GamePanel extends JPanel implements Runnable    {
             for(int i = 0; i < enemy.length; i++) {
             	if(enemy[i] != null) {
             		entityList.add(enemy[i]);            	}
+            }
+            
+            for(int i = 0; i < projectileList.size(); i++) {
+            	if(projectileList.get(i) != null) {
+            		entityList.add(projectileList.get(i));            	}
             }
             
             

@@ -1,82 +1,88 @@
 package entity;
 
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import main.GamePanel;
 
-public class Weapon {
-
-    private GamePanel gp;
-    private Player player;
-    private BufferedImage bulletImage;
-    private int damage;
-    private int speed;
-    private boolean active;
-    private int x, y;
-    private int bulletSize;
-
-    public Weapon(GamePanel gp, Player player) {
-        this.gp = gp;
-        this.player = player;
-        this.active = false;
-        this.damage = 10; // Set the damage value according to your requirements
-        this.speed = 8; // Set the speed value according to your requirements
-        this.bulletSize = 5; // Set the bullet size according to your requirements
-
-        try {
-            bulletImage = ImageIO.read(getClass().getResourceAsStream("/weapons/bullet.png")); // Adjust the path accordingly
-        } catch (IOException e) {
-            e.printStackTrace();
+public class Weapon extends Entity{
+	Entity user;
+	private String initialDirection;
+	private String projectileDirection;
+	
+	public Weapon(GamePanel gp) {
+		super(gp);
+	}
+	
+	public void setInitialDirection(String initialDirection) {
+        this.initialDirection = initialDirection;
+    }
+	
+	public void set(int worldX, int worldY, String direction, boolean alive, Entity user) {
+		this.worldX = worldX;
+		this.worldY = worldY;
+//		this.direction = direction;
+		this.alive = true;
+		this.user = user;
+		this.life = this.maxLife;
+		
+		// Jika karakter diam, gunakan arah terakhir
+        if (direction.isEmpty() && user instanceof Player) {
+            Player player = (Player) user;
+            projectileDirection = player.getLastDirection();
+        } else {
+            projectileDirection = direction;
         }
+	}
+	
+	public void update() {
+		if(user == gp.player) {
+			int enemyIndex = gp.cChecker.checkEntity(this, gp.enemy);
+			if(enemyIndex != 999) {
+				gp.player.damageEnemy(enemyIndex, attack);
+				alive = false;
+			}
+			
+		}
+		if(user != gp.player) {
+			
+		}
+		
+		switch (projectileDirection) {
+        case "up":
+            worldY -= speed;
+            break;
+        case "down":
+            worldY += speed;
+            break;
+        case "left":
+            worldX -= speed;
+            break;
+        case "right":
+            worldX += speed;
+            break;
     }
-
-    public void shoot() {
-        if (!active) {
-            active = true;
-            x = player.getX() + (player.getWidth() / 2) - (bulletSize / 2);
-            y = player.getY() + (player.getHeight() / 2) - (bulletSize / 2);
-        }
-    }
-
-    public void update() {
-        if (active) {
-            switch (player.getDirection()) {
-                case "up":
-                    y -= speed;
-                    break;
-                case "down":
-                    y += speed;
-                    break;
-                case "left":
-                    x -= speed;
-                    break;
-                case "right":
-                    x += speed;
-                    break;
-            }
-
-            if (x < 0 || x > gp.screenWidth || y < 0 || y > gp.screenHeight) {
-                active = false;
-            }
-        }
-    }
-
-    public void draw(Graphics2D g2) {
-        if (active) {
-            g2.drawImage(bulletImage, x, y, bulletSize, bulletSize, null);
-        }
-    }
-
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, bulletSize, bulletSize);
-    }
-
-    public int getDamage() {
-        return damage;
-    }
+		
+		life--;
+		if(life <= 0) {
+			alive = false;
+		}
+//		
+		spriteCounter++;
+		if(spriteCounter > 12) {
+			if(spriteNum == 1) {
+				spriteNum = 2;
+			}
+			else if(spriteNum == 2) {
+				spriteNum = 1;
+			}
+			spriteCounter = 0;
+//			
+//			
+//			
+		}
+		
+		
+		
+		
+	}
+	
+	
 }

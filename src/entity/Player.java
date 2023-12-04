@@ -2,6 +2,7 @@ package entity;
 
 import main.KeyHandler;
 import main.UtilityTool;
+import object.OBJ_Weapon;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -24,7 +25,7 @@ public class Player extends Entity {
 //    String prevDirection = "";
     public int hasGold = 0;
     BufferedImage prevImage = null;
-    
+    private String initialDirection = "right";
     
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -59,11 +60,13 @@ public class Player extends Entity {
         worldX = 1000;
         worldY = 1000;
         speed = 4;
-        direction = "";
+        direction = initialDirection;
         
         //PLAYER STATUS
         maxLife = 7;
         life = maxLife;
+        weapon = new OBJ_Weapon(gp);
+        
     }
 
     public void getPlayerImage() {
@@ -79,32 +82,38 @@ public class Player extends Entity {
     	attackLeft = setup("/player/testChar", gp.tileSize, gp.tileSize * 2);
     }
     
-    
+    public String getLastDirection() {
+        return lastDirection;
+    }
     
     public void update() {
-    if (attacking== true) {
-            attacking();
-    }
-    	
-    if (keyH.upPressed == true && worldY - speed >= gp.tileSize) {
-        direction = "up";
-        worldY -= speed;
-    }
-
-    if (keyH.downPressed == true && worldY + speed <= 2304) {
-        direction = "down";
-        worldY += speed;
-    }
-
-    if (keyH.leftPressed == true && worldX - speed >= gp.tileSize) {
-        direction = "left";
-        worldX -= speed;
-    }
-     
-    if (keyH.rightPressed == true && worldX + speed <= 2304) {
-        direction = "right";
-        worldX += speed;
-    }
+	    if (attacking== true) {
+	            attacking();
+	    }
+	    	
+	    if (keyH.upPressed == true && worldY - speed >= gp.tileSize) {
+	        direction = "up";
+	        worldY -= speed;
+	        lastDirection = "up";
+	    }
+	
+	    if (keyH.downPressed == true && worldY + speed <= 2304) {
+	        direction = "down";
+	        worldY += speed;
+	        lastDirection = "down";
+	    }
+	
+	    if (keyH.leftPressed == true && worldX - speed >= gp.tileSize) {
+	        direction = "left";
+	        worldX -= speed;
+	        lastDirection = "left";
+	    }
+	     
+	    if (keyH.rightPressed == true && worldX + speed <= 2304) {
+	        direction = "right";
+	        worldX += speed;
+	        lastDirection = "right";
+	    }
 
         //CHECK TILE COLLSION
         collisionOn = false;
@@ -122,7 +131,6 @@ public class Player extends Entity {
 
         //IF COLLISION IS FALSE, PLAYER CAN MOVE
         if (collisionOn) {
-            // Reset the player's position to the previous position
             switch (direction) {
                 case "up":
                     worldY += speed;
@@ -140,6 +148,11 @@ public class Player extends Entity {
         }
         
 //        prevDirection = direction;
+        if (gp.keyH.shotKeyPressed == true && weapon.alive == false) {
+            weapon.setInitialDirection(direction);
+            weapon.set(worldX, worldY, direction, true, this);
+            gp.projectileList.add(weapon);
+        }
         
         if(invincible == true) {
         	invincibleCounter++;
@@ -186,7 +199,7 @@ public class Player extends Entity {
     		
     		//Check enemy collision with the updated worldX, worldY, and solidArea
     		int monsterIndex = gp.cChecker.checkEntity(this, gp.enemy);
-    		damageEnemy(monsterIndex);
+    		damageEnemy(monsterIndex, attack);
     		
     		
     		//after checking collision, restore original data
@@ -248,7 +261,7 @@ public class Player extends Entity {
     	}
     }
     
-    public void damageEnemy(int i) {
+    public void damageEnemy(int i, int attack) {
     	if (i != 999) {
     		if(gp.enemy[i].invincible == false) {
     			gp.enemy[i].life -= 1;

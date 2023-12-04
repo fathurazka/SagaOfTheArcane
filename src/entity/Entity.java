@@ -9,8 +9,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import org.w3c.dom.css.RGBColor;
-
 import enemy.Enemy;
 import main.GamePanel;
 import main.UtilityTool;
@@ -21,18 +19,25 @@ public class Entity {
     public BufferedImage right;
     public BufferedImage left;
     public BufferedImage logo;
-    public BufferedImage attack;
+    public BufferedImage up1, up2, down1, down2, right1, right2, left1, left2;
+    public int attack;
+    public int maxMana;
+    public int mana;
     public BufferedImage attackUp, attackDown, attackLeft, attackRight;
+    
+    
         
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public Rectangle attackArea = new Rectangle (0, 0, 0, 0);
-    
+    public Weapon weapon;
+    public int useCost;
     
     
     //STATE
     public int worldX, worldY;
-    public static String direction = "right";
+    public static String direction = "right";  
+    protected String lastDirection = "";
     public int spriteNum = 1;
     public boolean collisionOn = false;
     public boolean invincible = false;
