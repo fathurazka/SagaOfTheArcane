@@ -34,6 +34,9 @@ public class Entity {
     public int useCost;
     
     
+    //TYPE
+    public final int type_pickupOnly = 7;
+    
     //STATE
     public int worldX, worldY;
     public static String direction = "right";  
@@ -47,6 +50,9 @@ public class Entity {
     boolean hpBarOn = false;
     int hpBarCounter = 0;
     
+    
+    //ITEM ATRIBUTES
+    public int value;
     
     //COUNTER
     public int spriteCounter = 0;
@@ -74,6 +80,21 @@ public class Entity {
     
     public void chasePlayer() {
     	
+    }
+    
+    public void checkDrop() {
+    	
+    }
+    
+    public void dropItem(Entity droppedItem) {
+    	for (int i = 0; i < gp.obj.length; i++) {
+    		if(gp.obj[i] == null) {
+    			gp.obj[i] = droppedItem;
+    			gp.obj[i].worldX = worldX;
+    			gp.obj[i].worldY = worldY;
+    			break;
+    		}
+    	}
     }
     
     public void update() {

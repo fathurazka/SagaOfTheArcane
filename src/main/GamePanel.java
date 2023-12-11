@@ -140,6 +140,7 @@ public class GamePanel extends JPanel implements Runnable    {
     		        }
 
     		        if (entity.dying == true) {
+    		        	enemy[i].checkDrop();
     		        	enemy[i] = null;
     		        }
     		    }

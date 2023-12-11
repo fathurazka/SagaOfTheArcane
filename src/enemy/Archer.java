@@ -5,6 +5,8 @@ import java.util.Random;
 import entity.Entity;
 import main.GamePanel;
 import object.OBJ_Arrow;
+import object.OBJ_Gold;
+import object.OBJ_Movement;
 
 public class Archer extends Entity implements Enemy {
 	public Enemy enemy;
@@ -88,4 +90,17 @@ public class Archer extends Entity implements Enemy {
 		
 	}
 	
+	
+	public void checkDrop() {
+		//CAST A DIE
+		int i = new Random().nextInt(100)+1;
+		
+		//SET THE MONSTER DROP
+		if (i < 50) {
+			dropItem(new OBJ_Gold(gp));
+		}
+		if (i >= 50 && i < 100) {
+			dropItem(new OBJ_Movement(gp));
+		}
+	}
 }

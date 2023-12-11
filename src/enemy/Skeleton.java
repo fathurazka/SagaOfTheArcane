@@ -4,6 +4,8 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Gold;
+import object.OBJ_Movement;
 
 public class Skeleton extends Entity implements Enemy{
 
@@ -70,6 +72,19 @@ public class Skeleton extends Entity implements Enemy{
 		}
 		if (gp.player.worldY < worldY) {
 			worldY -= speed;
+		}
+	}
+	
+	public void checkDrop() {
+		//CAST A DIE
+		int i = new Random().nextInt(100)+1;
+		
+		//SET THE MONSTER DROP
+		if (i < 50) {
+			dropItem(new OBJ_Gold(gp));
+		}
+		if (i >= 50 && i < 100) {
+			dropItem(new OBJ_Movement(gp));
 		}
 	}
 	
