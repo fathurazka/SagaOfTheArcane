@@ -2,6 +2,7 @@ package entity;
 
 import main.KeyHandler;
 import main.UtilityTool;
+import object.OBJ_Health;
 import object.OBJ_Weapon;
 
 import java.awt.AlphaComposite;
@@ -68,6 +69,24 @@ public class Player extends Entity {
         weapon = new OBJ_Weapon(gp);
         
     }
+    
+    public void setDefaultPosition() {
+    	worldX = 1000;
+        worldY = 1000;
+        speed = 4;
+        direction = initialDirection;
+    }
+    
+    public void restoreLife() {
+    	life = maxLife;
+    	invincible = false;
+    }
+    
+//    In case ada inventory, jika game over nanti panggil ini
+//    public void setItems() {
+//    	inventory.clear();
+//    }
+    
 
     public void getPlayerImage() {
         right = setup("/player/mainChar_right", gp.tileSize, gp.tileSize);
@@ -166,6 +185,10 @@ public class Player extends Entity {
         	shotAvailableCounter++;
         }
         
+        if(life <= 0) {
+        	gp.gameState = gp.gameOverState;
+        }
+        
     }
     
     
@@ -242,7 +265,12 @@ public class Player extends Entity {
 				gp.obj[i] = null;
 				System.out.println("Movement Speed: " + speed);
 				break;
+    		case "Heart":
+    			life++;
+    			gp.obj[i]= null;
+    			System.out.println("Health: " + life);
     		}
+    				
     		
     	}
     }

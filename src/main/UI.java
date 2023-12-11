@@ -110,6 +110,12 @@ public class UI {
 			g2.drawString("x " + gp.player.hasGold, 60, 73); //Position (60,50)
 		}
 		
+		//GAME OVER STATE
+		else if(gp.gameState == gp.gameOverState) {
+			drawGameOverScreen();
+		}
+
+		
 		
 	}
 	
@@ -165,6 +171,46 @@ public class UI {
 		return x;
 	}
 	
+	public void drawGameOverScreen() {
+		int x, y;
+		String text;
+		g2.setFont(arial_40);
+		
+		g2.setColor(new Color(0, 0, 0, 150));
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 30f));
+		
+		//GAME OVER TEXT
+		text = "Game Over";
+		x = getXForCenteredText(text);
+		y = gp.tileSize *4;		
+		//shadow
+		g2.setColor(Color.black);
+		g2.drawString(text, x, y);
+		//main
+		g2.setColor(Color.white);
+		g2.drawString(text, x-4, y-4);
+		
+		//RESTART BUTTON
+		g2.setFont(g2.getFont().deriveFont(30f));
+		text = "Restart";
+		x = getXForCenteredText(text);
+//		)
+		y += gp.tileSize*4;
+		g2.drawString(text, x, y);
+		if(commandNum == 0) {
+			g2.drawString(">", x-40, y);
+		}
+		
+		//QUIT BUTTON
+		text = "Quit";
+		x = getXForCenteredText(text);
+		y+=55;
+		g2.drawString(text, x, y);
+		if(commandNum == 1) {
+			g2.drawString(">", x-40, y);
+		}
+	}
 	
 	
 }

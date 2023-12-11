@@ -5,6 +5,7 @@ import java.util.Random;
 import entity.Entity;
 import main.GamePanel;
 import object.OBJ_Gold;
+import object.OBJ_Heart;
 import object.OBJ_Movement;
 
 public class Skeleton extends Entity implements Enemy{
@@ -80,11 +81,14 @@ public class Skeleton extends Entity implements Enemy{
 		int i = new Random().nextInt(100)+1;
 		
 		//SET THE MONSTER DROP
-		if (i < 50) {
+		if (i < 70) {
 			dropItem(new OBJ_Gold(gp));
 		}
-		if (i >= 50 && i < 100) {
+		if (i >= 70 && i < 80) {
 			dropItem(new OBJ_Movement(gp));
+		}
+		if (i >= 80 && i < 100) {
+			dropItem(new OBJ_Heart(gp));
 		}
 	}
 	
