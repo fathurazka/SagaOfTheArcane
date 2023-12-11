@@ -42,6 +42,11 @@ public class Weapon extends Entity{
 			
 		}
 		if(user != gp.player) {
+			boolean contactPlayer = gp.cChecker.checkPlayer(this);
+			if (gp.player.invincible == false && contactPlayer == true) {
+				damagePlayer(attack);
+				alive = false;;
+			}
 			
 		}
 		

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Arrow;
 
 public class Archer extends Entity implements Enemy {
 	public Enemy enemy;
@@ -16,6 +17,8 @@ public class Archer extends Entity implements Enemy {
 		speed = 2;
 		maxLife = 4;
 		life = maxLife;
+		
+		weapon = new OBJ_Arrow(gp);
 		
 		//set sendiri solid area tergantung ukuran enemy
 		solidArea.x = 3;
@@ -35,8 +38,8 @@ public class Archer extends Entity implements Enemy {
 	
 	
 	//ATUR BEHAVIOUR (INI AI BUAT GERAKIN RANDOM OTOMATIS, KALO MAU NAMBAH PATHFINDER, INI DIMATIIN AJA)
-	// public void setAction() {
-	// 	actionLockCounter++;
+//	 public void setAction() {
+//	 	actionLockCounter++;
 		
 	// 	if (actionLockCounter == 120) {
 	// 		Random random = new Random();
@@ -57,8 +60,10 @@ public class Archer extends Entity implements Enemy {
 			
 	// 		actionLockCounter = 0;
 	// 	}
-	// }
-
+		
+//	}
+	
+	
 	public void chasePlayer() {
 		if (gp.player.worldX > worldX) {
 			worldX += speed;
@@ -72,6 +77,15 @@ public class Archer extends Entity implements Enemy {
 		if (gp.player.worldY < worldY) {
 			worldY -= speed;
 		}
+		int i = new Random().nextInt(100)+1;
+		if(i > 99 && weapon.alive == false && shotAvailableCounter == 30) {
+			weapon.set(worldX, worldY, direction, true, this);
+			gp.projectileList.add(weapon);	
+			shotAvailableCounter = 0;
+		}	
+		
+		
+		
 	}
 	
 }

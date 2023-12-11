@@ -53,6 +53,7 @@ public class Entity {
     public int actionLockCounter = 0;    
     public int invincibleCounter = 0;
     int dyingCounter = 0;
+    public int shotAvailableCounter = 0;
     
     
     //VAR BUAT OBJECT
@@ -86,12 +87,10 @@ public class Entity {
     	gp.cChecker.checkEntity(this, gp.enemy);
     	boolean contactPlayer = gp.cChecker.checkPlayer(this);
     	
+    	
     	if(this.type == 1 && contactPlayer == true) {
-    		if(gp.player.invincible == false) {
-    			gp.player.life -= 1;
-    			gp.player.invincible = true;
-    		}
-    	}
+    		damagePlayer(attack);
+    	 }
     	
     	
 //    	System.out.println("Collision with player: " + collisionOn);
@@ -127,13 +126,23 @@ public class Entity {
     	
     	if(invincible == true) {
         	invincibleCounter++;
-        	if(invincibleCounter > 40) {
+        	if(invincibleCounter > 10) {
         		invincible = false;
         		invincibleCounter = 0;
         	}
         }
+    	
+    	
     }
     
+    
+    public void damagePlayer(int attack) {
+    	if(gp.player.invincible == false) {
+			gp.player.life -= 1;
+			gp.player.invincible = true;
+			
+		}
+    }
     
     public void draw(Graphics2D g2) {
     	BufferedImage image = null;
@@ -195,7 +204,7 @@ public class Entity {
 //        	dyingAnimation(g2);
 //        }
         
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
         
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }

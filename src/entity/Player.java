@@ -148,10 +148,11 @@ public class Player extends Entity {
         }
         
 //        prevDirection = direction;
-        if (gp.keyH.shotKeyPressed == true && weapon.alive == false) {
+        if (gp.keyH.shotKeyPressed == true && weapon.alive == false && shotAvailableCounter == 30) {
             weapon.setInitialDirection(direction);
             weapon.set(worldX, worldY, direction, true, this);
             gp.projectileList.add(weapon);
+            shotAvailableCounter = 0;
         }
         
         if(invincible == true) {
@@ -161,6 +162,10 @@ public class Player extends Entity {
         		invincibleCounter = 0;
         	}
         }
+        if (shotAvailableCounter < 30) {
+        	shotAvailableCounter++;
+        }
+        
     }
     
     
