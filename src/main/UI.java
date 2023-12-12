@@ -24,7 +24,7 @@ public class UI {
 		arial_40 = new Font("Arial", Font.PLAIN, 30);
 		
 		OBJ_Gold gold = new OBJ_Gold(gp);
-		goldImage = gold.right;
+		goldImage = gold.right1;
 		
 		OBJ_Health healthBar = new OBJ_Health(gp);
 		health0 = healthBar.image;
