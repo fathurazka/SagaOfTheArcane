@@ -96,11 +96,11 @@ public class Archer extends Entity implements Enemy {
 
 		if (gp.player.worldX > worldX) {
 			worldX += speed;
-			direction = "right";
+			this.direction = "right";
 		}
 		if (gp.player.worldX < worldX) {
 			worldX -= speed;
-			direction = "left";
+			this.direction = "left";
 		}
 		if (gp.player.worldY > worldY) {
 			worldY += speed;
@@ -110,7 +110,7 @@ public class Archer extends Entity implements Enemy {
 		}
 		int i = new Random().nextInt(100)+1;
 		if(i > 99 && weapon.alive == false && shotAvailableCounter == 30) {
-			weapon.set(worldX, worldY, direction, true, this);
+			weapon.set(worldX, worldY, this.direction, true, this);
 			gp.projectileList.add(weapon);	
 			shotAvailableCounter = 0;
 		}	

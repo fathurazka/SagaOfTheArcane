@@ -39,7 +39,7 @@ public class Entity {
     
     //STATE
     public int worldX, worldY;
-    public static String direction = "right";  
+    public String direction = "right";  
     protected String lastDirection = "";
     public int spriteNum = 1;
     public boolean collisionOn = false;
@@ -66,6 +66,7 @@ public class Entity {
     public BufferedImage image, image1, image2, image3, image4, image5, image6, image7;
 	public String name;
 	public boolean collision = false;
+    public BufferedImage projectileImage;
 	
     
     //CHARACTER STATUS
@@ -188,8 +189,9 @@ public class Entity {
     	int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
         
+        //this.direction = direction;
         
-        switch (direction) {
+        switch (this.direction) {
         case "":
             image = right2;
             break;
@@ -209,7 +211,7 @@ public class Entity {
             case 6:image = left6; break;
             case 7:image = left7; break;
             case 8:image = left8; break;
-            default: image = left1; break; // default to the first frame
+            //default: image = left1; break; // default to the first frame
         }	
             break;
         case "right":
@@ -222,7 +224,7 @@ public class Entity {
             case 6: image = right6; break;
             case 7: image = right7; break;
             case 8: image = right8; break;
-            default: image = right1; break; // default to the first frame
+            //default: image = right1; break; // default to the first frame
         }
             break;
         }

@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import entity.Player;
 
 public class KeyHandler implements KeyListener {
+    Player player;
 
 	GamePanel gp;
 	
@@ -153,22 +154,22 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_W) {
             upPressed = false;
-            Player.direction = "";
+            //player.direction = "";
         }
 
         if (code == KeyEvent.VK_S) {
             downPressed = false;
-            Player.direction = "";
+            //player.direction = "";
         }
 
         if (code == KeyEvent.VK_A) {
             leftPressed = false;
-            Player.direction = "";
+            //player.direction = "";
         }
 
         if (code == KeyEvent.VK_D) {
             rightPressed = false;
-            Player.direction = "";
+            //player.direction = "";
         }
         if (code == KeyEvent.VK_K) {
             shotKeyPressed = false;

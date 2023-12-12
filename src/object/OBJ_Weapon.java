@@ -34,8 +34,26 @@ public class OBJ_Weapon extends Weapon{
 //		right1 = setup("/projectile/pj_right", gp.tileSize, gp.tileSize);
 //		right2 = setup("/projectile/pj_tight1", gp.tileSize, gp.tileSize);
 		
-		right = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
-		left = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		right1 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		right2 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		right3 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		right4 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		right5 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		right6 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		right7 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		right8 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		left1 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		left2 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		left3 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		left4 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		left5 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		left6 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		left7 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+		left8 = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+
+		//projectileImage = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
+
+		//left = setup("/projectile/projectileImg", gp.tileSize, gp.tileSize);
 		
 		
 	

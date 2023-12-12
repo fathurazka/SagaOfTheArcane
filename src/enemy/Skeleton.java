@@ -78,11 +78,11 @@ public class Skeleton extends Entity implements Enemy{
 	public void chasePlayer() {
 		if (gp.player.worldX > worldX) {
 			worldX += speed;
-			direction = "right";
+			this.direction = "right";
 		}
 		if (gp.player.worldX < worldX) {
 			worldX -= speed;
-			direction = "left";
+			this.direction = "left";
 		}
 		if (gp.player.worldY > worldY) {
 			worldY += speed;

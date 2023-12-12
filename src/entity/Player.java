@@ -61,7 +61,7 @@ public class Player extends Entity {
         worldX = 1000;
         worldY = 1000;
         speed = 4;
-        direction = initialDirection;
+        this.direction = this.initialDirection;
         
         //PLAYER STATUS
         maxLife = 7;
@@ -74,7 +74,7 @@ public class Player extends Entity {
     	worldX = 1000;
         worldY = 1000;
         speed = 4;
-        direction = initialDirection;
+        this.direction = this.initialDirection;
     }
     
     public void restoreLife() {
@@ -116,7 +116,7 @@ public class Player extends Entity {
     }
     
     public String getLastDirection() {
-        return lastDirection;
+        return this.lastDirection;
     }
     
     public void update() {
@@ -125,27 +125,27 @@ public class Player extends Entity {
 	    }
 	    	
 	    if (keyH.upPressed == true && worldY - speed >= gp.tileSize) {
-	        direction = "up";
+	        this.direction = "up";
 	        worldY -= speed;
-	        lastDirection = "up";
+	        this.lastDirection = "up";
 	    }
 	
 	    if (keyH.downPressed == true && worldY + speed <= 2304) {
-	        direction = "down";
+	        this.direction = "down";
 	        worldY += speed;
-	        lastDirection = "down";
+	        this.lastDirection = "down";
 	    }
 	
 	    if (keyH.leftPressed == true && worldX - speed >= gp.tileSize) {
-	        direction = "left";
+	        this.direction = "left";
 	        worldX -= speed;
-	        lastDirection = "left";
+	        this.lastDirection = "left";
 	    }
 	     
 	    if (keyH.rightPressed == true && worldX + speed <= 2304) {
-	        direction = "right";
+	        this.direction = "right";
 	        worldX += speed;
-	        lastDirection = "right";
+	        this.lastDirection = "right";
 	    }
 
         //CHECK TILE COLLSION
@@ -164,7 +164,7 @@ public class Player extends Entity {
 
         //IF COLLISION IS FALSE, PLAYER CAN MOVE
         if (collisionOn) {
-            switch (direction) {
+            switch (this.direction) {
                 case "up":
                     worldY += speed;
                     break;
@@ -184,8 +184,8 @@ public class Player extends Entity {
         
 //        prevDirection = direction;
         if (gp.keyH.shotKeyPressed == true && weapon.alive == false && shotAvailableCounter == 30) {
-            weapon.setInitialDirection(direction);
-            weapon.set(worldX, worldY, direction, true, this);
+            weapon.setInitialDirection(this.direction);
+            weapon.set(worldX, worldY, this.direction, true, this);
             gp.projectileList.add(weapon);
             shotAvailableCounter = 0;
         }
@@ -251,7 +251,7 @@ public class Player extends Entity {
     		int solidAreaHeight = solidArea.height;
     		
     		//adjust player's worldX/Y for the attackArea
-    		switch (direction) {
+    		switch (this.direction) {
     		case "up": 
 				worldY -= attackArea.height;
 				break;
@@ -385,7 +385,7 @@ public class Player extends Entity {
         int tempScreenX = screenX;
         int tempScreenY = screenY;
         
-        switch (direction) {
+        switch (this.direction) {
             case "":
                 if (attacking == false) {
                 	image = prevImage != null ? prevImage : right;

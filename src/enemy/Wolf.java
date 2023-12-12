@@ -80,9 +80,11 @@ public class Wolf extends Entity implements Enemy{
 	public void chasePlayer() {
 		if (gp.player.worldX > worldX) {
 			worldX += speed;
+			this.direction = "right";
 		}
 		if (gp.player.worldX < worldX) {
 			worldX -= speed;
+			this.direction = "left";
 		}
 		if (gp.player.worldY > worldY) {
 			worldY += speed;
