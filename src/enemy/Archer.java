@@ -35,8 +35,22 @@ public class Archer extends Entity implements Enemy {
 	}
 	
 	public void getImage() {
-		right = setup("/enemy/archerEnemy", gp.tileSize, gp.tileSize);
-		left = setup("/enemy/archerEnemy-left", gp.tileSize, gp.tileSize);
+		right1 = setup("/enemy/archer-right-1", gp.tileSize, gp.tileSize);
+		right2 = setup("/enemy/archer-right-2", gp.tileSize, gp.tileSize);
+		right3 = setup("/enemy/archer-right-3", gp.tileSize, gp.tileSize);
+		right4 = setup("/enemy/archer-right-4", gp.tileSize, gp.tileSize);
+		right5 = setup("/enemy/archer-right-5", gp.tileSize, gp.tileSize);
+		right6 = setup("/enemy/archer-right-6", gp.tileSize, gp.tileSize);
+		right7 = setup("/enemy/archer-right-7", gp.tileSize, gp.tileSize);
+		right8 = setup("/enemy/archer-right-8", gp.tileSize, gp.tileSize);
+		left1 = setup("/enemy/archer-left-1", gp.tileSize, gp.tileSize);
+		left2 = setup("/enemy/archer-left-2", gp.tileSize, gp.tileSize);
+		left3 = setup("/enemy/archer-left-3", gp.tileSize, gp.tileSize);
+		left4 = setup("/enemy/archer-left-4", gp.tileSize, gp.tileSize);
+		left5 = setup("/enemy/archer-left-5", gp.tileSize, gp.tileSize);
+		left6 = setup("/enemy/archer-left-6", gp.tileSize, gp.tileSize);
+		left7 = setup("/enemy/archer-left-7", gp.tileSize, gp.tileSize);
+		left8 = setup("/enemy/archer-left-8", gp.tileSize, gp.tileSize);
 	}
 	
 	
@@ -65,20 +79,20 @@ public class Archer extends Entity implements Enemy {
 	// 	}
 		
 //	}
-	public void updateSprite() {
-		switch(direction) {
-			case "right":
-				image = right;
-				break;
-			case "left":
-				image = left;
-				break;
-		}
-	}
+	// public void updateSprite() {
+	// 	switch(direction) {
+	// 		case "right":
+	// 			image = right;
+	// 			break;
+	// 		case "left":
+	// 			image = left;
+	// 			break;
+	// 	}
+	// }
 	
 	public void chasePlayer() {
 
-		updateSprite();
+		// updateSprite();
 
 		if (gp.player.worldX > worldX) {
 			worldX += speed;

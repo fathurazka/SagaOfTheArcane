@@ -31,8 +31,22 @@ public class Skeleton extends Entity implements Enemy{
 	}
 	
 	public void getImage() {
-		right = setup("/enemy/Skeleton-run-1-right", gp.tileSize, gp.tileSize);
-		left = setup("/enemy/Skeleton-run-1-left", gp.tileSize, gp.tileSize);
+		right1 = setup("/enemy/Skeleton-run-1-right", gp.tileSize, gp.tileSize);
+		right2 = setup("/enemy/Skeleton-run-2-right", gp.tileSize, gp.tileSize);
+		right3 = setup("/enemy/Skeleton-run-3-right", gp.tileSize, gp.tileSize);
+		right4 = setup("/enemy/Skeleton-run-4-right", gp.tileSize, gp.tileSize);
+		right5 = setup("/enemy/Skeleton-run-5-right", gp.tileSize, gp.tileSize);
+		right6 = setup("/enemy/Skeleton-run-6-right", gp.tileSize, gp.tileSize);
+		right7 = setup("/enemy/Skeleton-run-7-right", gp.tileSize, gp.tileSize);
+		right8 = setup("/enemy/Skeleton-run-8-right", gp.tileSize, gp.tileSize);
+		left1 = setup("/enemy/Skeleton-run-1-left", gp.tileSize, gp.tileSize);
+		left2 = setup("/enemy/Skeleton-run-2-left", gp.tileSize, gp.tileSize);
+		left3 = setup("/enemy/Skeleton-run-3-left", gp.tileSize, gp.tileSize);
+		left4 = setup("/enemy/Skeleton-run-4-left", gp.tileSize, gp.tileSize);
+		left5 = setup("/enemy/Skeleton-run-5-left", gp.tileSize, gp.tileSize);
+		left6 = setup("/enemy/Skeleton-run-6-left", gp.tileSize, gp.tileSize);
+		left7 = setup("/enemy/Skeleton-run-7-left", gp.tileSize, gp.tileSize);
+		left8 = setup("/enemy/Skeleton-run-8-left", gp.tileSize, gp.tileSize);
 	}
 	
 	
@@ -64,9 +78,11 @@ public class Skeleton extends Entity implements Enemy{
 	public void chasePlayer() {
 		if (gp.player.worldX > worldX) {
 			worldX += speed;
+			direction = "right";
 		}
 		if (gp.player.worldX < worldX) {
 			worldX -= speed;
+			direction = "left";
 		}
 		if (gp.player.worldY > worldY) {
 			worldY += speed;

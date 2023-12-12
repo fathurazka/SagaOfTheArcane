@@ -132,18 +132,7 @@ public class Entity {
         //              worldX += speed;
         //              break;
         //      }
-        // }
-    	
-    	spriteCounter++;
-    	if (spriteCounter > 12) {
-    		if(spriteCounter == 1) {
-    			spriteNum = 2;
-    		}
-    		else if(spriteNum == 2) {
-    			spriteNum = 1;
-    		}
-    		spriteCounter = 0;
-    	}
+        // 
     	
     	if(invincible == true) {
         	invincibleCounter++;
@@ -153,6 +142,34 @@ public class Entity {
         	}
         }
     	
+        spriteCounter++;
+        if(spriteCounter > 8) {
+            if(spriteNum == 1) {
+                spriteNum = 2;
+            }
+            else if(spriteNum ==2) {
+                spriteNum = 3;
+            }
+            else if(spriteNum == 3) {
+                spriteNum = 4;
+            }
+            else if(spriteNum == 4) {
+                spriteNum = 5;
+            }
+            else if(spriteNum == 5) {
+                spriteNum = 6;
+            }
+            else if(spriteNum == 6) {
+                spriteNum = 7;
+            }
+            else if(spriteNum == 7) {
+                spriteNum = 8;
+            }
+            else if(spriteNum == 8) {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
+        }
     	
     }
     
@@ -174,19 +191,39 @@ public class Entity {
         
         switch (direction) {
         case "":
-            image = right;
+            image = right2;
             break;
         case "up":
-            image = left;
+            image = left2;
             break;
         case "down":
-            image = right;
+            image = right2;
             break;
         case "left":
-            image = left;	
+        switch (spriteNum) {
+            case 1:image = left1; break;
+            case 2:image = left2; break;
+            case 3:image = left3; break;
+            case 4:image = left4; break;
+            case 5:image = left5; break;
+            case 6:image = left6; break;
+            case 7:image = left7; break;
+            case 8:image = left8; break;
+            default: image = left1; break; // default to the first frame
+        }	
             break;
         case "right":
-            image = right;
+        switch (spriteNum) {
+            case 1: image = right1; break;
+            case 2: image = right2; break;
+            case 3: image = right3; break;
+            case 4: image = right4; break;
+            case 5: image = right5; break;
+            case 6: image = right6; break;
+            case 7: image = right7; break;
+            case 8: image = right8; break;
+            default: image = right1; break; // default to the first frame
+        }
             break;
         }
         

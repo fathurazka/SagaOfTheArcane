@@ -32,8 +32,22 @@ public class Wolf extends Entity implements Enemy{
 	}
 	
 	public void getImage() {
-		right = setup("/enemy/wolfEnemy", gp.tileSize, gp.tileSize);
-		left = setup("/enemy/wolfEnemy", gp.tileSize, gp.tileSize);
+		right1 = setup("/enemy/wolf-right-1", gp.tileSize, gp.tileSize);
+		right2 = setup("/enemy/wolf-right-2", gp.tileSize, gp.tileSize);
+		right3 = setup("/enemy/wolf-right-3", gp.tileSize, gp.tileSize);
+		right4 = setup("/enemy/wolf-right-4", gp.tileSize, gp.tileSize);
+		right5 = setup("/enemy/wolf-right-5", gp.tileSize, gp.tileSize);
+		right6 = setup("/enemy/wolf-right-6", gp.tileSize, gp.tileSize);
+		right7 = setup("/enemy/wolf-right-7", gp.tileSize, gp.tileSize);
+		right8 = setup("/enemy/wolf-right-8", gp.tileSize, gp.tileSize);
+		left1 = setup("/enemy/wolf-left-1", gp.tileSize, gp.tileSize);
+		left2 = setup("/enemy/wolf-left-2", gp.tileSize, gp.tileSize);
+		left3 = setup("/enemy/wolf-left-3", gp.tileSize, gp.tileSize);
+		left4 = setup("/enemy/wolf-left-4", gp.tileSize, gp.tileSize);
+		left5 = setup("/enemy/wolf-left-5", gp.tileSize, gp.tileSize);
+		left6 = setup("/enemy/wolf-left-6", gp.tileSize, gp.tileSize);
+		left7 = setup("/enemy/wolf-left-7", gp.tileSize, gp.tileSize);
+		left8 = setup("/enemy/wolf-left-8", gp.tileSize, gp.tileSize);
 	}
 
 	
