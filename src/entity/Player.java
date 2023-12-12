@@ -87,9 +87,23 @@ public class Player extends Entity {
 //    	inventory.clear();
 //    }
     
-
     public void getPlayerImage() {
-        right = setup("/player/mainChar_right", gp.tileSize, gp.tileSize);
+        right1 = setup("/player/MC-run-1", gp.tileSize, gp.tileSize);
+        right2 = setup("/player/MC-run-2", gp.tileSize, gp.tileSize);
+        right3 = setup("/player/MC-run-3", gp.tileSize, gp.tileSize);
+        right4 = setup("/player/MC-run-4", gp.tileSize, gp.tileSize);
+        right5 = setup("/player/MC-run-5", gp.tileSize, gp.tileSize);
+        right6 = setup("/player/MC-run-6", gp.tileSize, gp.tileSize);
+        right7 = setup("/player/MC-run-7", gp.tileSize, gp.tileSize);
+        right8 = setup("/player/MC-run-8", gp.tileSize, gp.tileSize);
+        left1 = setup("/player/MC-run-1-left", gp.tileSize, gp.tileSize);
+        left2 = setup("/player/MC-run-2-left", gp.tileSize, gp.tileSize);
+        left3 = setup("/player/MC-run-3-left", gp.tileSize, gp.tileSize);
+        left4 = setup("/player/MC-run-4-left", gp.tileSize, gp.tileSize);
+        left5 = setup("/player/MC-run-5-left", gp.tileSize, gp.tileSize);
+        left6 = setup("/player/MC-run-6-left", gp.tileSize, gp.tileSize);
+        left7 = setup("/player/MC-run-7-left", gp.tileSize, gp.tileSize);
+        left8 = setup("/player/MC-run-8-left", gp.tileSize, gp.tileSize);
         left = setup("/player/mainChar_left", gp.tileSize, gp.tileSize);
         logo = setup("/player/logo", gp.tileSize, gp.tileSize);
     }
@@ -164,6 +178,8 @@ public class Player extends Entity {
                     worldX -= speed;
                     break;
             }
+
+            
         }
         
 //        prevDirection = direction;
@@ -188,6 +204,35 @@ public class Player extends Entity {
         if(life <= 0) {
         	gp.gameState = gp.gameOverState;
         }
+
+        spriteCounter++;
+            if(spriteCounter > 12) {
+                if(spriteNum == 1) {
+                    spriteNum = 2;
+                }
+                else if(spriteNum ==2) {
+                    spriteNum = 3;
+                }
+                else if(spriteNum == 3) {
+                    spriteNum = 4;
+                }
+                else if(spriteNum == 4) {
+                    spriteNum = 5;
+                }
+                else if(spriteNum == 5) {
+                    spriteNum = 6;
+                }
+                else if(spriteNum == 6) {
+                    spriteNum = 7;
+                }
+                else if(spriteNum == 7) {
+                    spriteNum = 8;
+                }
+                else if(spriteNum == 8) {
+                    spriteNum = 1;
+                }
+                spriteCounter = 0;
+            }
         
     }
     
@@ -370,8 +415,18 @@ public class Player extends Entity {
             	break;
             case "left":
             	if (attacking == false) {
-            		image = left;
-                    prevImage = left;
+            		switch (spriteNum) {
+                        case 1:image = left1; break;
+                        case 2:image = left2; break;
+                        case 3:image = left3; break;
+                        case 4:image = left4; break;
+                        case 5:image = left5; break;
+                        case 6:image = left6; break;
+                        case 7:image = left7; break;
+                        case 8:image = left8; break;
+                        default: image = left1; break; // default to the first frame
+                    }
+                    prevImage = left1;
                 }
             	if (attacking == true) {
             		tempScreenX = screenX - gp.tileSize;
@@ -380,8 +435,19 @@ public class Player extends Entity {
             	break;
             case "right":
             	if (attacking == false) {
-                	image = right;
-                    prevImage = right;
+                    switch (spriteNum) {
+                        case 1: image = right1; break;
+                        case 2: image = right2; break;
+                        case 3: image = right3; break;
+                        case 4: image = right4; break;
+                        case 5: image = right5; break;
+                        case 6: image = right6; break;
+                        case 7: image = right7; break;
+                        case 8: image = right8; break;
+                        default: image = right1; break; // default to the first frame
+                    }
+
+                    prevImage = right1;
                 }
             	if (attacking == true) {
                 	image = attackRight;

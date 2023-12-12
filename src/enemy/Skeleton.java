@@ -31,8 +31,8 @@ public class Skeleton extends Entity implements Enemy{
 	}
 	
 	public void getImage() {
-		right = setup("/enemy/skeletonEnemy", gp.tileSize, gp.tileSize);
-		left = setup("/enemy/skeletonEnemy", gp.tileSize, gp.tileSize);
+		right = setup("/enemy/Skeleton-run-1-right", gp.tileSize, gp.tileSize);
+		left = setup("/enemy/Skeleton-run-1-left", gp.tileSize, gp.tileSize);
 	}
 	
 	

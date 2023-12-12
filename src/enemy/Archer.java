@@ -36,7 +36,7 @@ public class Archer extends Entity implements Enemy {
 	
 	public void getImage() {
 		right = setup("/enemy/archerEnemy", gp.tileSize, gp.tileSize);
-		left = setup("/enemy/archerEnemy", gp.tileSize, gp.tileSize);
+		left = setup("/enemy/archerEnemy-left", gp.tileSize, gp.tileSize);
 	}
 	
 	
@@ -65,14 +65,28 @@ public class Archer extends Entity implements Enemy {
 	// 	}
 		
 //	}
-	
+	public void updateSprite() {
+		switch(direction) {
+			case "right":
+				image = right;
+				break;
+			case "left":
+				image = left;
+				break;
+		}
+	}
 	
 	public void chasePlayer() {
+
+		updateSprite();
+
 		if (gp.player.worldX > worldX) {
 			worldX += speed;
+			direction = "right";
 		}
 		if (gp.player.worldX < worldX) {
 			worldX -= speed;
+			direction = "left";
 		}
 		if (gp.player.worldY > worldY) {
 			worldY += speed;
