@@ -16,8 +16,8 @@ public class Wolf extends Entity implements Enemy{
 		
 		type = 1;
 		name = "Wolf";
-		speed = 2;
-		maxLife = 4;
+		speed = 3;
+		maxLife = 2;
 		life = maxLife;
 		
 		//set sendiri solid area tergantung ukuran enemy
@@ -99,13 +99,13 @@ public class Wolf extends Entity implements Enemy{
 		int i = new Random().nextInt(100)+1;
 		
 		//SET THE MONSTER DROP
-		if (i < 70) {
+		if (i < 50) {
 			dropItem(new OBJ_Gold(gp));
 		}
-		if (i >= 70 && i < 80) {
+		if (i >= 50 && i < 70) {
 			dropItem(new OBJ_Movement(gp));
 		}
-		if (i >= 80 && i < 100) {
+		if (i >= 70 && i < 100) {
 			dropItem(new OBJ_Heart(gp));
 		}
 	}

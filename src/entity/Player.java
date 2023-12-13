@@ -27,6 +27,7 @@ public class Player extends Entity {
     public int hasGold = 0;
     BufferedImage prevImage = null;
     private String initialDirection = "right";
+    public int level = 1;
     
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -53,10 +54,9 @@ public class Player extends Entity {
         solidArea.height = 32;
         
         attackArea.width = 36; //nanti diganti tergantung weapon
-        attackArea.height = 36; 
-        
+        attackArea.height = 36;     
     }
-
+    
     public void setDefaultValues() {
         worldX = 1000;
         worldY = 1000;
@@ -86,6 +86,8 @@ public class Player extends Entity {
 //    public void setItems() {
 //    	inventory.clear();
 //    }
+    
+
     
     public void getPlayerImage() {
         right1 = setup("/player/MC-run-1", gp.tileSize, gp.tileSize);

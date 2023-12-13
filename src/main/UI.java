@@ -103,11 +103,16 @@ public class UI {
 			g2.drawString("x " + gp.player.hasGold, 60, 73); //Position (60,50)
 		}
 		
+		if(gp.gameState == gp.playState) {
+			g2.drawString("Level: " + gp.player.level, 25, 108); //Position (60,50)
+		}
+		
 		//PAUSE STATE
 		else if(gp.gameState == gp.pauseState) {
 			drawPauseScreen();
 			g2.drawImage(goldImage, 10, 40, gp.tileSize, gp.tileSize, null);
 			g2.drawString("x " + gp.player.hasGold, 60, 73); //Position (60,50)
+			g2.drawString("Level: " + gp.player.level, 25, 108); 
 		}
 		
 		//GAME OVER STATE

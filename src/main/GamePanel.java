@@ -43,14 +43,14 @@ public class GamePanel extends JPanel implements Runnable    {
     //SYSTEM
     TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
+    public Player player = new Player(this, keyH);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
     // ini gatau kenapa error kalo dihapus  )
-    public AssetSetter aSetter = new AssetSetter(this);
+    public AssetSetter aSetter = new AssetSetter(this, player);
     public UI ui = new UI(this);    
     
     //ENTITY AND OBJECT
-    public Player player = new Player(this, keyH);
     public Entity obj[] = new Entity[10]; 
     public Entity enemy[] = new Entity[200]; //200 itu number of monster yang bisa didisplay dalam 1 waktu
     
@@ -81,15 +81,17 @@ public class GamePanel extends JPanel implements Runnable    {
     	aSetter.setObject();
     	aSetter.setEnemy();
     	gameState = titleState;
-    	
     }
     
     public void restart() {
+    	player.level = 1;
+    	player.hasGold = 0;
     	player.setDefaultPosition();
     	player.setDefaultValues();
     	player.restoreLife();
     	aSetter.setObject();
     	aSetter.setEnemy();
+    	
     }
     
     
@@ -142,6 +144,8 @@ public class GamePanel extends JPanel implements Runnable    {
     	
     	if (gameState == playState) {
     		player.update();
+    		boolean allEnemiesDead = true;
+
     		
     		//enemy
     		for (int i = 0; i < enemy.length; i++) {
@@ -149,6 +153,7 @@ public class GamePanel extends JPanel implements Runnable    {
     		    if (entity != null) {
     		        if (entity.alive == true && entity.dying == false) {
     		            entity.update();
+    		            allEnemiesDead = false;
     		        }
 
     		        if (entity.dying == true) {
@@ -157,6 +162,12 @@ public class GamePanel extends JPanel implements Runnable    {
     		        }
     		    }
     		}
+    		if (allEnemiesDead) {
+                // Increase player level and respawn enemies
+                player.level++;
+                aSetter.setEnemy(); // You may need to modify this method to suit your needs
+            }
+
     		
     		//projectile
     		for (int i = 0; i < projectileList.size(); i++) {

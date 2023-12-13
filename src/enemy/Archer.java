@@ -16,9 +16,9 @@ public class Archer extends Entity implements Enemy {
 		super(gp);
 		
 		type = 1;
-		name = "Wolf";
+		name = "Archer";
 		speed = 2;
-		maxLife = 4;
+		maxLife = 3;
 		life = maxLife;
 		
 		weapon = new OBJ_Arrow(gp);
@@ -125,13 +125,13 @@ public class Archer extends Entity implements Enemy {
 		int i = new Random().nextInt(100)+1;
 		
 		//SET THE MONSTER DROP
-		if (i < 70) {
+		if (i < 50) {
 			dropItem(new OBJ_Gold(gp));
 		}
-		if (i >= 70 && i < 80) {
+		if (i >= 50 && i < 70) {
 			dropItem(new OBJ_Movement(gp));
 		}
-		if (i >= 80 && i < 100) {
+		if (i >= 70 && i < 100) {
 			dropItem(new OBJ_Heart(gp));
 		}
 	}
