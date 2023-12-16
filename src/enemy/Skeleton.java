@@ -22,8 +22,8 @@ public class Skeleton extends Entity implements Enemy{
 		//set sendiri solid area tergantung ukuran enemy
 		solidArea.x = 3;
 		solidArea.y = 18;
-		solidArea.width = 42;
-		solidArea.height = 30;
+		solidArea.width = 90;
+		solidArea.height = 60;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		

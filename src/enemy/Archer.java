@@ -54,42 +54,47 @@ public class Archer extends Entity implements Enemy {
 	}
 	
 	
-	//ATUR BEHAVIOUR (INI AI BUAT GERAKIN RANDOM OTOMATIS, KALO MAU NAMBAH PATHFINDER, INI DIMATIIN AJA)
+//	ATUR BEHAVIOUR (INI AI BUAT GERAKIN RANDOM OTOMATIS, KALO MAU NAMBAH PATHFINDER, INI DIMATIIN AJA)
 //	 public void setAction() {
 //	 	actionLockCounter++;
-		
-	// 	if (actionLockCounter == 120) {
-	// 		Random random = new Random();
-	// 		int i = random.nextInt(100)+1;
-			
-	// 		if(i <= 25) {
-	// 			direction = "up";
-	// 		}
-	// 		if(i > 25 && i <= 50) {
-	// 			direction = "down";
-	// 		}
-	// 		if(i > 50 && i <= 75) {
-	// 			direction = "left";
-	// 		}
-	// 		if(i > 75 && i <= 100) {
-	// 			direction = "right";
-	// 		}
-			
-	// 		actionLockCounter = 0;
-	// 	}
-		
+//		
+//	 	if (actionLockCounter == 120) {
+//	 		Random random = new Random();
+//	 		int i = random.nextInt(100)+1;
+//			
+//	 		if(i <= 25) {
+//	 			direction = "up";
+//	 		}
+//	 		if(i > 25 && i <= 50) {
+//	 			direction = "down";
+//	 		}
+//	 		if(i > 50 && i <= 75) {
+//	 			direction = "left";
+//	 		}
+//	 		if(i > 75 && i <= 100) {
+//	 			direction = "right";
+//	 		}
+//			
+//	 		actionLockCounter = 0;
+//	 	}
+//	 	int i = new Random().nextInt(100)+1;
+//		if(i > 99 && weapon.alive == false && shotAvailableCounter == 30) {
+//			weapon.set(worldX, worldY, this.direction, true, this);
+//			gp.projectileList.add(weapon);	
+//			shotAvailableCounter = 0;
+//		}
 //	}
-	// public void updateSprite() {
-	// 	switch(direction) {
-	// 		case "right":
-	// 			image = right;
-	// 			break;
-	// 		case "left":
-	// 			image = left;
-	// 			break;
-	// 	}
-	// }
-	
+//	 public void updateSprite() {
+//	 	switch(direction) {
+//	 		case "right":
+//	 			image = right;
+//	 			break;
+//	 		case "left":
+//	 			image = left;
+//	 			break;
+//	 	}
+//	 }
+	 
 	public void chasePlayer() {
 
 		// updateSprite();
@@ -108,14 +113,33 @@ public class Archer extends Entity implements Enemy {
 		if (gp.player.worldY < worldY) {
 			worldY -= speed;
 		}	
+		
+		 shootArrow();
 	}
-//	int i = new Random().nextInt(100)+1;
-//	if(i > 99 && weapon.alive == false && shotAvailableCounter == 30) {
-//		weapon.set(worldX, worldY, this.direction, true, this);
-//		gp.projectileList.add(weapon);	
-//		shotAvailableCounter = 0;
-//	}	
+//		
 	
+	public void shootArrow() {
+	    int i = new Random().nextInt(100) + 1;
+	    if (i > 99 && weapon.alive == false) {
+	        //Calculate the relative position of the player
+	        int playerX = gp.player.worldX;
+	        int playerY = gp.player.worldY;
+	        int relativeX = playerX - worldX;
+	        int relativeY = playerY - worldY;
+
+	        //Determine the direction based on the relative position
+	        if (Math.abs(relativeX) > Math.abs(relativeY)) {
+	            //Shoot horizontally
+	            weapon.set(worldX, worldY, (relativeX > 0) ? "right" : "left", true, this);
+	        } else {
+	            //Shoot vertically
+	            weapon.set(worldX, worldY, (relativeY > 0) ? "down" : "up", true, this);
+	        }
+
+	        gp.projectileList.add(weapon);
+	        shotAvailableCounter = 0;
+	    }
+	}
 	
 	public void checkDrop() {
 		dropItem(new OBJ_Gold(gp));

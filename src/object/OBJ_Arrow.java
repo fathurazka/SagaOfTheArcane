@@ -11,7 +11,7 @@ public class OBJ_Arrow extends Weapon{
 		this.gp = gp;
 		
 		name = "Arrow";
-		speed = 5;
+		speed = 8;
 		maxLife = 80;
 		life = maxLife;
 		attack = 2;
@@ -23,20 +23,28 @@ public class OBJ_Arrow extends Weapon{
 		}
 		
 	public void	getImage() {
-//		up1 = setup("/projectile/pj_up", gp.tileSize, gp.tileSize);
-//		up2 = setup("/projectile/pj_up1", gp.tileSize, gp.tileSize);
-//		down1 = setup("/projectile/pj_down", gp.tileSize, gp.tileSize);
-//		down2 = setup("/projectile/pj_down1", gp.tileSize, gp.tileSize);
-//		left1 = setup("/projectile/pj_left", gp.tileSize, gp.tileSize);
-//		left2 = setup("/projectile/pj_left1", gp.tileSize, gp.tileSize);
-//		right1 = setup("/projectile/pj_right", gp.tileSize, gp.tileSize);
-//		right2 = setup("/projectile/pj_tight1", gp.tileSize, gp.tileSize);
+		right1 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		right2 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		right3 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		right4 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		right5 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		right6 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		right7 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		right8 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		left1 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		left2 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		left3 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		left4 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		left5 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		left6 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		left7 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		left8 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		up1 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		up2 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		down1 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
+		down2 = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
 		
-		right = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
-		left = setup("/projectile/arrow", gp.tileSize, gp.tileSize);
 		
-		
-	
 	}
 
 }

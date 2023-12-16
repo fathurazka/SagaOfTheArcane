@@ -70,6 +70,11 @@ public class AssetSetter {
 			gp.enemy[3].worldX = 35 * gp.tileSize;
 			gp.enemy[3].worldY = 22 * gp.tileSize;
 			gp.enemy[3].type = 1;
+			
+			gp.enemy[4] = new Archer(gp);
+			gp.enemy[4].worldX = 35 * gp.tileSize;
+			gp.enemy[4].worldY = 22 * gp.tileSize;
+			gp.enemy[4].type = 1;
 		}
 		if (player.level == 2) {
 			gp.enemy[7] = new Skeleton(gp);
