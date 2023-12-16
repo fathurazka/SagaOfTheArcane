@@ -1,6 +1,7 @@
 package main;
 
 import enemy.Archer;
+import enemy.Giant;
 import enemy.Skeleton;
 import enemy.Wolf;
 import entity.Player;
@@ -71,7 +72,7 @@ public class AssetSetter {
 			gp.enemy[3].worldY = 22 * gp.tileSize;
 			gp.enemy[3].type = 1;
 			
-			gp.enemy[4] = new Archer(gp);
+			gp.enemy[4] = new Giant(gp);
 			gp.enemy[4].worldX = 35 * gp.tileSize;
 			gp.enemy[4].worldY = 22 * gp.tileSize;
 			gp.enemy[4].type = 1;

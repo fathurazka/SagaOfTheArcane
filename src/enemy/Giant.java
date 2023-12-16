@@ -8,22 +8,22 @@ import object.OBJ_Gold;
 import object.OBJ_Heart;
 import object.OBJ_Movement;
 
-public class Skeleton extends Entity implements Enemy{
+public class Giant extends Entity implements Enemy{
 
-	public Skeleton(GamePanel gp) {
+	public Giant(GamePanel gp) {
 		super(gp);
 		
 		type = 1;
-		name = "Skeleton";
+		name = "Giant";
 		speed = 1;
 		maxLife = 3;
 		life = maxLife;
 		
 		//set sendiri solid area tergantung ukuran enemy
-		solidArea.x = 3;
-		solidArea.y = 18;
-		solidArea.width = 42;
-		solidArea.height = 30;
+		solidArea.x = 9;
+		solidArea.y = 54;
+		solidArea.width = 126;
+		solidArea.height = 90;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 		
@@ -31,22 +31,22 @@ public class Skeleton extends Entity implements Enemy{
 	}
 	
 	public void getImage() {
-		right1 = setup("/enemy/Skeleton-run-1-right", gp.tileSize, gp.tileSize);
-		right2 = setup("/enemy/Skeleton-run-2-right", gp.tileSize, gp.tileSize);
-		right3 = setup("/enemy/Skeleton-run-3-right", gp.tileSize, gp.tileSize);
-		right4 = setup("/enemy/Skeleton-run-4-right", gp.tileSize, gp.tileSize);
-		right5 = setup("/enemy/Skeleton-run-5-right", gp.tileSize, gp.tileSize);
-		right6 = setup("/enemy/Skeleton-run-6-right", gp.tileSize, gp.tileSize);
-		right7 = setup("/enemy/Skeleton-run-7-right", gp.tileSize, gp.tileSize);
-		right8 = setup("/enemy/Skeleton-run-8-right", gp.tileSize, gp.tileSize);
-		left1 = setup("/enemy/Skeleton-run-1-left", gp.tileSize, gp.tileSize);
-		left2 = setup("/enemy/Skeleton-run-2-left", gp.tileSize, gp.tileSize);
-		left3 = setup("/enemy/Skeleton-run-3-left", gp.tileSize, gp.tileSize);
-		left4 = setup("/enemy/Skeleton-run-4-left", gp.tileSize, gp.tileSize);
-		left5 = setup("/enemy/Skeleton-run-5-left", gp.tileSize, gp.tileSize);
-		left6 = setup("/enemy/Skeleton-run-6-left", gp.tileSize, gp.tileSize);
-		left7 = setup("/enemy/Skeleton-run-7-left", gp.tileSize, gp.tileSize);
-		left8 = setup("/enemy/Skeleton-run-8-left", gp.tileSize, gp.tileSize);
+		right1 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		right2 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		right3 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		right4 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		right5 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		right6 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		right7 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		right8 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		left1 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		left2 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		left3 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		left4 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		left5 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		left6 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		left7 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		left8 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
 	}
 	
 	
