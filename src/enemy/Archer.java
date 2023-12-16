@@ -14,6 +14,8 @@ public class Archer extends Entity implements Enemy {
 
 	public Archer(GamePanel gp) {
 		super(gp);
+		shooting = false;
+        SHOOTING_RANGE = 150;
 		
 		type = 1;
 		name = "Archer";
@@ -96,50 +98,89 @@ public class Archer extends Entity implements Enemy {
 //	 }
 	 
 	public void chasePlayer() {
+        int playerX = gp.player.worldX;
+        int playerY = gp.player.worldY;
 
-		// updateSprite();
+        int distance = Math.abs(worldX - playerX) + Math.abs(worldY - playerY);
 
-		if (gp.player.worldX > worldX) {
-			worldX += speed;
-			this.direction = "right";
-		}
-		if (gp.player.worldX < worldX) {
-			worldX -= speed;
-			this.direction = "left";
-		}
-		if (gp.player.worldY > worldY) {
-			worldY += speed;
-		}
-		if (gp.player.worldY < worldY) {
-			worldY -= speed;
-		}	
-		
-		 shootArrow();
-	}
+        //kondisi untuk mengecek apakah sedang menembak dan jarak dengan pemain
+        if (!shooting && distance > SHOOTING_RANGE) {
+            if (playerX > worldX) {
+                worldX += speed;
+                this.direction = "right";
+            } else if (playerX < worldX) {
+                worldX -= speed;
+                this.direction = "left";
+            }
+
+            if (playerY > worldY) {
+                worldY += speed;
+            } else if (playerY < worldY) {
+                worldY -= speed;
+            }
+        }
+
+        shootArrow();
+    }
 //		
 	
 	public void shootArrow() {
-	    int i = new Random().nextInt(100) + 1;
-	    if (i > 99 && weapon.alive == false) {
-	        //Calculate the relative position of the player
-	        int playerX = gp.player.worldX;
-	        int playerY = gp.player.worldY;
-	        int relativeX = playerX - worldX;
-	        int relativeY = playerY - worldY;
+        int playerX = gp.player.worldX;
+        int playerY = gp.player.worldY;
 
-	        //Determine the direction based on the relative position
-	        if (Math.abs(relativeX) > Math.abs(relativeY)) {
-	            //Shoot horizontally
-	            weapon.set(worldX, worldY, (relativeX > 0) ? "right" : "left", true, this);
-	        } else {
-	            //Shoot vertically
-	            weapon.set(worldX, worldY, (relativeY > 0) ? "down" : "up", true, this);
-	        }
+        int distance = Math.abs(worldX - playerX) + Math.abs(worldY - playerY);
 
-	        gp.projectileList.add(weapon);
-	        shotAvailableCounter = 0;
-	    }
-	}
+        int i = new Random().nextInt(100) + 1;
+        //menandakan bahwa archer sedang menembak dalam jarak tertentu
+        if (!shooting && i > 95 && distance <= SHOOTING_RANGE && weapon.alive == false) {
+            shooting = true;
+
+            int relativeX = playerX - worldX;
+            int relativeY = playerY - worldY;
+
+            String chosenDirection;
+
+            // Determine the shooting direction based on relative positions
+            if (Math.abs(relativeX) > Math.abs(relativeY)) {
+                chosenDirection = (relativeX > 0) ? "right" : "left";
+            } else {
+                chosenDirection = (relativeY > 0) ? "down" : "up";
+            }
+
+            weapon.set(worldX, worldY, chosenDirection, true, this);
+            gp.projectileList.add(weapon);
+
+            stopShooting();
+        }
+    }
+	
+	
+//	public void shootArrow() {
+//	    int i = new Random().nextInt(100) + 1;
+//	    if (i > 99 && weapon.alive == false) {
+//	        //Calculate the relative position of the player
+//	        int playerX = gp.player.worldX;
+//	        int playerY = gp.player.worldY;
+//	        int relativeX = playerX - worldX;
+//	        int relativeY = playerY - worldY;
+//
+//	        //Determine the direction based on the relative position
+//	        if (Math.abs(relativeX) > Math.abs(relativeY)) {
+//	            //Shoot horizontally
+//	            weapon.set(worldX, worldY, (relativeX > 0) ? "right" : "left", true, this);
+//	        } else {
+//	            //Shoot vertically
+//	            weapon.set(worldX, worldY, (relativeY > 0) ? "down" : "up", true, this);
+//	        }
+//
+//	        gp.projectileList.add(weapon);
+//	        shotAvailableCounter = 0;
+//	    }
+//	}
+	
+	private void stopShooting() {
+        shooting = false;
+    }
 	
 	public void checkDrop() {
 		dropItem(new OBJ_Gold(gp));

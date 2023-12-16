@@ -25,7 +25,8 @@ public class Entity {
     public int mana;
     public BufferedImage attackUp, attackDown, attackLeft, attackRight;
     public int damage;
-    
+    public boolean shooting;
+    public int SHOOTING_RANGE;
         
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
