@@ -7,21 +7,22 @@ import main.GamePanel;
 
 public class OBJ_Weapon extends Weapon{
 	GamePanel gp;
+	int damageWeapon = 1;
 	
 	public OBJ_Weapon(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
 		
-		name = "Weapon";
+		name = "Magic Ball";
 		speed = 7;
 		maxLife = 80;
 		life = 2;
 		attack = maxLife;
 		useCost = 1;
 		alive = false;
-		getImage();
+		setDamage(damageWeapon);
 		
-			
+		getImage();	
 		}
 		
 	public void	getImage() {

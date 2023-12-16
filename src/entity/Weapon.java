@@ -6,10 +6,13 @@ public class Weapon extends Entity{
 	Entity user;
 	private String initialDirection;
 	private String projectileDirection;
+    
 	
 	public Weapon(GamePanel gp) {
 		super(gp);
 	}
+	
+	
 	
 	public void setInitialDirection(String initialDirection) {
         this.initialDirection = initialDirection;

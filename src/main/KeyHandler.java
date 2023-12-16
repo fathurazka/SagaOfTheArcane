@@ -62,7 +62,7 @@ public class KeyHandler implements KeyListener {
     	}
     	
     	
-    	//GAME STATE
+    	//PLAY STATE
     	else if (gp.gameState == gp.playState) {
             if (code == KeyEvent.VK_W) {
                 upPressed = true;
@@ -84,6 +84,9 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_K) {
                 shotKeyPressed = true;
+            }
+            if (code == KeyEvent.VK_I) {
+            	gp.gameState = gp.characterState;
             }
             
             
@@ -115,6 +118,13 @@ public class KeyHandler implements KeyListener {
     	//GAME OVER STATE
     	else if (gp.gameState == gp.gameOverState) {
     		gameOverState(code);
+    	}
+    	
+    	//CHARACTER STATE
+    	else if (gp.gameState == gp.characterState) {
+    		if(code == KeyEvent.VK_I) {
+    			gp.gameState = gp.playState;
+    		}
     	}
        
         

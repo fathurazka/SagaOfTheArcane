@@ -24,7 +24,15 @@ public class Entity {
     public int maxMana;
     public int mana;
     public BufferedImage attackUp, attackDown, attackLeft, attackRight;
+    int damage;
     
+    public void setDamage(int damage){
+    	this.damage = damage;
+    }
+	
+	 public int getDamage() {
+	        return damage;
+	 }
     
         
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);

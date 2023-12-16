@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import enemy.Enemy;
 import main.GamePanel;
 
 public class Player extends Entity {
@@ -24,10 +25,12 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
 //    String prevDirection = "";
-    public int hasGold = 0;
+    public int hasGold;
     BufferedImage prevImage = null;
     private String initialDirection = "right";
-    public int level = 1;
+    public int level;
+    public Entity currentWeapon;   
+    
     
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -61,6 +64,10 @@ public class Player extends Entity {
         worldX = 1000;
         worldY = 1000;
         speed = 4;
+        level = 1;
+        hasGold = 0;
+//      n
+        
         this.direction = this.initialDirection;
         
         //PLAYER STATUS
@@ -69,6 +76,10 @@ public class Player extends Entity {
         weapon = new OBJ_Weapon(gp);
         
     }
+    
+//    public int getAttack() {
+//    	return attack = 
+//    }
     
     public void setDefaultPosition() {
     	worldX = 1000;
@@ -344,7 +355,7 @@ public class Player extends Entity {
     public void damageEnemy(int i, int attack) {
     	if (i != 999) {
     		if(gp.enemy[i].invincible == false) {
-    			gp.enemy[i].life -= 1;
+    			gp.enemy[i].life -= weapon.getDamage();
     			gp.enemy[i].invincible = true;
     			
     			if(gp.enemy[i].life <= 0) {
