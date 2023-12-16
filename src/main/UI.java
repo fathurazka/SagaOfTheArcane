@@ -6,17 +6,21 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import entity.Entity;
 import object.OBJ_Gold;
 import object.OBJ_Health;
 
 public class UI {
 	
 	GamePanel gp;
+	Entity entity;
 	Graphics2D g2;
 	Font arial_40;
 	BufferedImage goldImage;
 	BufferedImage health7, health6, health5, health4, health3, health2, health1, health0;
 	public int commandNum = 0;
+	public int slotCol = 0;
+	public int slotRow = 0;
 	
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -233,7 +237,7 @@ public class UI {
 		g2.drawString(value, textX, textY);
 		textY += lineHeight;
 		
-		value = String.valueOf(gp.player.weapon.name);
+		value = String.valueOf(gp.player.damage);
 		textX = getXForAlignToRightText(value, tailX);
 		g2.drawString(value, textX, textY);
 		textY += lineHeight;
@@ -241,17 +245,77 @@ public class UI {
 	}
 	
 	public void drawInventory() {
+		//FRAME
 		int frameX = gp.tileSize * 9;
 		int frameY = gp.tileSize;
-		int frameWidth = gp.tileSize*5;
-		int frameHeight = gp.tileSize*4;
+		int frameWidth = gp.tileSize*6;
+		int frameHeight = gp.tileSize*3;
 		
 		drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 		
+		//SLOT
+		final int slotXStart = frameX + 20;
+		final int slotYStart = frameY + 20;
+		int slotX = slotXStart;
+		int slotY = slotYStart;
 		
+		//DRAW TRADE SYSTEM
+//	
+		for(int i = 0; i < gp.player.TradeItems.size(); i++) {
+			g2.drawImage(gp.player.TradeItems.get(i).right1, slotX, slotY, null);
+			slotX += gp.tileSize;	
+			
+			if(i == 4 || i == 9 || i == 14) {
+				slotX = slotXStart;		
+				slotY += gp.tileSize;
+			}
+			
+		}
+//		}e
+		
+		
+		//CURSOR
+		int cursorX = slotXStart + (gp.tileSize * slotCol);
+		int cursorY = slotYStart + (gp.tileSize * slotRow);
+		int cursorWidth = gp.tileSize;
+		int cursorHeight = gp.tileSize;
+		
+		//DRAW CURSOR
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke(3));
+		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+		
+		//DESCRIPTION FRAME
+		int dframeX = frameX;
+		int dframeY = frameY + frameHeight;
+		int dframeWidth = frameWidth;
+		int dframeHeight = gp.tileSize*3;
+		
+		drawSubWindow(dframeX, dframeY, dframeWidth, dframeHeight);
+		
+		//DRAW DESCRIPTION TEXT
+		int textX = dframeX + 20;
+		int textY = dframeY + gp.tileSize;
+		
+		g2.setFont(g2.getFont().deriveFont(20));
+		
+		int itemIndex = getItemsIndexOnSlot();
+		
+		
+		if(itemIndex < gp.player.TradeItems.size()) {
+			for (String line: gp.player.TradeItems.get(itemIndex).itemDescription.split("\n")){
+				g2.drawString(line, textX, textY);
+				textY += 32;
+			}
+		}
 		
 	}
 	
+	
+	public int getItemsIndexOnSlot() {
+		int itemIndex = slotCol + (slotRow * 3);
+		return itemIndex;
+	}
 	
 	
 	public void drawSubWindow(int x, int y, int width, int height){

@@ -13,6 +13,7 @@ public class OBJ_Movement extends Entity{
 		super(gp);
 		
 		name = "Movement";
+		itemDescription = "[" + name + "]" + "\nIncrease Movement Speed.";
 //		
 		right1 = setup("/object/movement", gp.tileSize, gp.tileSize);
 		right2 = setup("/object/movement", gp.tileSize, gp.tileSize);
@@ -34,4 +35,10 @@ public class OBJ_Movement extends Entity{
         left = setup("/object/movement", gp.tileSize, gp.tileSize);
 				
 	}
+	
+	public void use(Entity entity) {
+		entity.speed += 1;
+		gp.player.hasGold--;
+	}
+	
 }

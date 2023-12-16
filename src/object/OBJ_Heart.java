@@ -12,6 +12,9 @@ public class OBJ_Heart extends Entity {
 		super(gp);
 		
 		name = "Heart";
+		itemDescription = "[" + name + "]" + "\nIncrease Health.";
+				
+				 
 //		
 		right1 = setup("/object/heart", gp.tileSize, gp.tileSize);
 		right2 = setup("/object/heart", gp.tileSize, gp.tileSize);
@@ -32,4 +35,16 @@ public class OBJ_Heart extends Entity {
 
         //left = setup("/object/heart", gp.tileSize, gp.tileSize);
 	}
+	
+	public void use(Entity entity) {
+		entity.life += 1;
+		gp.player.hasGold--;
+		
+		if(gp.player.life > gp.player.maxLife) {
+			gp.player.life = gp.player.maxLife;
+			gp.player.hasGold++;
+		}
+	}
+	
+	
 }

@@ -107,32 +107,17 @@ public class Archer extends Entity implements Enemy {
 		}
 		if (gp.player.worldY < worldY) {
 			worldY -= speed;
-		}
-		int i = new Random().nextInt(100)+1;
-		if(i > 99 && weapon.alive == false && shotAvailableCounter == 30) {
-			weapon.set(worldX, worldY, this.direction, true, this);
-			gp.projectileList.add(weapon);	
-			shotAvailableCounter = 0;
 		}	
-		
-		
-		
 	}
+//	int i = new Random().nextInt(100)+1;
+//	if(i > 99 && weapon.alive == false && shotAvailableCounter == 30) {
+//		weapon.set(worldX, worldY, this.direction, true, this);
+//		gp.projectileList.add(weapon);	
+//		shotAvailableCounter = 0;
+//	}	
 	
 	
 	public void checkDrop() {
-		//CAST A DIE
-		int i = new Random().nextInt(100)+1;
-		
-		//SET THE MONSTER DROP
-		if (i < 50) {
-			dropItem(new OBJ_Gold(gp));
-		}
-		if (i >= 50 && i < 70) {
-			dropItem(new OBJ_Movement(gp));
-		}
-		if (i >= 70 && i < 100) {
-			dropItem(new OBJ_Heart(gp));
-		}
+		dropItem(new OBJ_Gold(gp));
 	}
 }

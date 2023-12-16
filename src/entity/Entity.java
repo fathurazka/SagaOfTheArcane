@@ -24,15 +24,7 @@ public class Entity {
     public int maxMana;
     public int mana;
     public BufferedImage attackUp, attackDown, attackLeft, attackRight;
-    int damage;
-    
-    public void setDamage(int damage){
-    	this.damage = damage;
-    }
-	
-	 public int getDamage() {
-	        return damage;
-	 }
+    public int damage;
     
         
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
@@ -61,6 +53,7 @@ public class Entity {
     
     //ITEM ATRIBUTES
     public int value;
+    public String itemDescription;
     
     //COUNTER
     public int spriteCounter = 0;
@@ -105,6 +98,9 @@ public class Entity {
     		}
     	}
     }
+    
+    public void use(Entity entity) {}
+    
     
     public void update() {
     	//setAction();

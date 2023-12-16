@@ -2,25 +2,25 @@ package object;
 
 import java.security.PublicKey;
 
+import entity.Entity;
 import entity.Weapon;
 import main.GamePanel;
 
 public class OBJ_Weapon extends Weapon{
 	GamePanel gp;
-	int damageWeapon = 1;
 	
 	public OBJ_Weapon(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
 		
 		name = "Magic Ball";
+		itemDescription = "[" + name + "]" + "\nIncrease Weapon Damage.";
 		speed = 7;
 		maxLife = 80;
 		life = 2;
 		attack = maxLife;
 		useCost = 1;
 		alive = false;
-		setDamage(damageWeapon);
 		
 		getImage();	
 		}
@@ -60,6 +60,10 @@ public class OBJ_Weapon extends Weapon{
 	
 	}
 	
+	public void use(Entity entity) {
+		entity.damage += 1;
+		gp.player.hasGold--;
+	}
 	
 	
 	

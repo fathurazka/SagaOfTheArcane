@@ -3,6 +3,8 @@ package entity;
 import main.KeyHandler;
 import main.UtilityTool;
 import object.OBJ_Health;
+import object.OBJ_Heart;
+import object.OBJ_Movement;
 import object.OBJ_Weapon;
 
 import java.awt.AlphaComposite;
@@ -13,6 +15,7 @@ import java.awt.Rectangle;
 import java.awt.desktop.AboutHandler;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -31,6 +34,11 @@ public class Player extends Entity {
     public int level;
     public Entity currentWeapon;   
     
+    //TRADE SYSTEM
+    public ArrayList<Entity> TradeItems = new ArrayList<>();
+    public final int TradeItemsSize = 5;
+    
+    
     
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -45,6 +53,7 @@ public class Player extends Entity {
         setDefaultValues(); 
         getPlayerImage();
         getPlayerAttackImage();
+        setTradeItems();
 
         solidArea = new Rectangle();
         solidArea.x = 8;
@@ -66,6 +75,7 @@ public class Player extends Entity {
         speed = 4;
         level = 1;
         hasGold = 0;
+        damage = 1;
 //      n
         
         this.direction = this.initialDirection;
@@ -80,6 +90,15 @@ public class Player extends Entity {
 //    public int getAttack() {
 //    	return attack = 
 //    }
+    
+    public void setTradeItems() {
+    	TradeItems.add(new OBJ_Movement(gp));
+    	TradeItems.add(new OBJ_Heart(gp));
+    	TradeItems.add(new OBJ_Weapon(gp));
+    	
+    }
+    
+    
     
     public void setDefaultPosition() {
     	worldX = 1000;
@@ -355,7 +374,7 @@ public class Player extends Entity {
     public void damageEnemy(int i, int attack) {
     	if (i != 999) {
     		if(gp.enemy[i].invincible == false) {
-    			gp.enemy[i].life -= weapon.getDamage();
+    			gp.enemy[i].life -= damage;
     			gp.enemy[i].invincible = true;
     			
     			if(gp.enemy[i].life <= 0) {
@@ -366,6 +385,23 @@ public class Player extends Entity {
     	}
     }
     
+    //SELECT AND USE TRADE ITEMS
+    public void selectItems() {
+    	
+    	int itemIndex = gp.ui.getItemsIndexOnSlot();
+//    	
+    	if(itemIndex < TradeItems.size()){
+    		Entity selectedItem = TradeItems.get(itemIndex);
+    		
+    		if (gp.player.hasGold > 0) {    			
+    			selectedItem.use(this);
+    		}
+    		
+    		
+    		
+    	}
+//    	.
+    }
     
     
     
