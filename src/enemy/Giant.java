@@ -16,7 +16,7 @@ public class Giant extends Entity implements Enemy{
 		type = 1;
 		name = "Giant";
 		speed = 1;
-		maxLife = 3;
+		maxLife = 5;
 		life = maxLife;
 		
 		//set sendiri solid area tergantung ukuran enemy
@@ -31,22 +31,22 @@ public class Giant extends Entity implements Enemy{
 	}
 	
 	public void getImage() {
-		right1 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		right2 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		right3 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		right4 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		right5 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		right6 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		right7 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		right8 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		left1 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		left2 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		left3 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		left4 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		left5 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		left6 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		left7 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
-		left8 = setup("/enemy/giant", gp.tileSize*3, gp.tileSize*3);
+		right1 = setup("/enemy/giant-right-1", gp.tileSize*3, gp.tileSize*3);
+		right2 = setup("/enemy/giant-right-2", gp.tileSize*3, gp.tileSize*3);
+		right3 = setup("/enemy/giant-right-3", gp.tileSize*3, gp.tileSize*3);
+		right4 = setup("/enemy/giant-right-4", gp.tileSize*3, gp.tileSize*3);
+		right5 = setup("/enemy/giant-right-5", gp.tileSize*3, gp.tileSize*3);
+		right6 = setup("/enemy/giant-right-6", gp.tileSize*3, gp.tileSize*3);
+		right7 = setup("/enemy/giant-right-7", gp.tileSize*3, gp.tileSize*3);
+		right8 = setup("/enemy/giant-right-8", gp.tileSize*3, gp.tileSize*3);
+		left1 = setup("/enemy/giant-left-1", gp.tileSize*3, gp.tileSize*3);
+		left2 = setup("/enemy/giant-left-2", gp.tileSize*3, gp.tileSize*3);
+		left3 = setup("/enemy/giant-left-3", gp.tileSize*3, gp.tileSize*3);
+		left4 = setup("/enemy/giant-left-4", gp.tileSize*3, gp.tileSize*3);
+		left5 = setup("/enemy/giant-left-5", gp.tileSize*3, gp.tileSize*3);
+		left6 = setup("/enemy/giant-left-6", gp.tileSize*3, gp.tileSize*3);
+		left7 = setup("/enemy/giant-left-7", gp.tileSize*3, gp.tileSize*3);
+		left8 = setup("/enemy/giant-left-8", gp.tileSize*3, gp.tileSize*3);
 	}
 	
 	

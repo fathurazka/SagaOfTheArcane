@@ -33,22 +33,22 @@ public class Dragon extends Entity implements Enemy {
     }
 
     public void getImage() {
-    	right1 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		right2 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		right3 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		right4 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		right5 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		right6 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		right7 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		right8 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		left1 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		left2 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		left3 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		left4 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		left5 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		left6 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		left7 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
-		left8 = setup("/enemy/dragon", gp.tileSize*2, gp.tileSize*2);
+    	right1 = setup("/enemy/dragon-right-1", gp.tileSize*2, gp.tileSize*2);
+		right2 = setup("/enemy/dragon-right-2", gp.tileSize*2, gp.tileSize*2);
+		right3 = setup("/enemy/dragon-right-3", gp.tileSize*2, gp.tileSize*2);
+		right4 = setup("/enemy/dragon-right-4", gp.tileSize*2, gp.tileSize*2);
+		right5 = setup("/enemy/dragon-right-5", gp.tileSize*2, gp.tileSize*2);
+		right6 = setup("/enemy/dragon-right-6", gp.tileSize*2, gp.tileSize*2);
+		right7 = setup("/enemy/dragon-right-7", gp.tileSize*2, gp.tileSize*2);
+		right8 = setup("/enemy/dragon-right-8", gp.tileSize*2, gp.tileSize*2);
+		left1 = setup("/enemy/dragon-left-1", gp.tileSize*2, gp.tileSize*2);
+		left2 = setup("/enemy/dragon-left-2", gp.tileSize*2, gp.tileSize*2);
+		left3 = setup("/enemy/dragon-left-3", gp.tileSize*2, gp.tileSize*2);
+		left4 = setup("/enemy/dragon-left-4", gp.tileSize*2, gp.tileSize*2);
+		left5 = setup("/enemy/dragon-left-5", gp.tileSize*2, gp.tileSize*2);
+		left6 = setup("/enemy/dragon-left-6", gp.tileSize*2, gp.tileSize*2);
+		left7 = setup("/enemy/dragon-left-7", gp.tileSize*2, gp.tileSize*2);
+		left8 = setup("/enemy/dragon-left-8", gp.tileSize*2, gp.tileSize*2);
     }
 
     public void chasePlayer() {

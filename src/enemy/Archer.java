@@ -147,6 +147,12 @@ public class Archer extends Entity implements Enemy {
                 chosenDirection = (relativeY > 0) ? "down" : "up";
             }
 
+
+            if(weapon instanceof OBJ_Arrow) {
+            	OBJ_Arrow arrow = (OBJ_Arrow) weapon;
+                arrow.setDirection(chosenDirection);
+            }
+
             weapon.set(worldX, worldY, chosenDirection, true, this);
             gp.projectileList.add(weapon);
 

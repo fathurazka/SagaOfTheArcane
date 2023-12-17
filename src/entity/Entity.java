@@ -201,10 +201,10 @@ public class Entity {
             image = right2;
             break;
         case "up":
-            image = left2;
+            image = up1;
             break;
         case "down":
-            image = right2;
+            image = down1;
             break;
         case "left":
         switch (spriteNum) {
