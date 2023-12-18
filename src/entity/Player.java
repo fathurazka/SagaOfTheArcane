@@ -31,7 +31,7 @@ public class Player extends Entity {
     public int hasGold;
     BufferedImage prevImage = null;
     private String initialDirection = "right";
-    public int level;
+    public int level = 1;
     public Entity currentWeapon;   
     
     //TRADE SYSTEM
@@ -73,7 +73,7 @@ public class Player extends Entity {
         worldX = 1000;
         worldY = 1000;
         speed = 4;
-        level = 1;
+//        level = 1;
         hasGold = 0;
         damage = 1;
 //      n
@@ -365,7 +365,7 @@ public class Player extends Entity {
     public void contactEnemy(int i) {
     	if (i != 999) {
     		if(invincible == false) {
-    			life -= damageMelee;
+    			life -= 1;
     			invincible = true;
     		}
     	}

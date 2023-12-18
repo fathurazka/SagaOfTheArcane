@@ -18,7 +18,7 @@ public class Skeleton extends Entity implements Enemy{
 		speed = 1;
 		maxLife = 3;
 		life = maxLife;
-		damageMelee = 1;
+		enemyDamage = 2;
 		
 		
 		//set sendiri solid area tergantung ukuran enemy

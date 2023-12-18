@@ -20,7 +20,7 @@ public class OBJ_Arrow extends Weapon{
 		speed = 8;
 		maxLife = 80;
 		life = maxLife;
-		attack = 2;
+		enemyDamage = 2;
 		useCost = 1;
 		alive = false;
 		//getImage();

@@ -14,7 +14,7 @@ public class OBJ_Fire extends Weapon {
         speed = 3;
         maxLife = 60;
         life = maxLife;
-        attack = 3;
+        enemyDamage = 3;
         useCost = 1;
         alive = false;
         getImage();

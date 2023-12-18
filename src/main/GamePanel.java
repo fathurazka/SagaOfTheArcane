@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -85,8 +86,9 @@ public class GamePanel extends JPanel implements Runnable    {
     }
     
     public void restart() {
-    	player.level = 1;
     	player.hasGold = 0;
+    	player.level = 0;
+    	Arrays.fill(enemy, null);
     	player.setDefaultPosition();
     	player.setDefaultValues();
     	player.restoreLife();

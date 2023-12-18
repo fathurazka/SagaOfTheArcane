@@ -27,13 +27,13 @@ public class Entity {
     public int damage;
     public boolean shooting;
     public int SHOOTING_RANGE;
+    public int enemyDamage;
         
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public Rectangle attackArea = new Rectangle (0, 0, 0, 0);
     public Weapon weapon;
     public int useCost;
-    public int damageMelee;
     
     
     //TYPE
@@ -180,11 +180,12 @@ public class Entity {
     	
     }
     
-    //ini kenapa ada 2? di entity udah ada contactEnemy
+    
     public void damagePlayer(int attack) {
     	if(gp.player.invincible == false) {
-			gp.player.life -= damageMelee;
+			gp.player.life -= enemyDamage;
 			gp.player.invincible = true;
+			
 		}
     }
     
@@ -201,10 +202,10 @@ public class Entity {
             image = right2;
             break;
         case "up":
-            image = up1;
+            image = left2;
             break;
         case "down":
-            image = down1;
+            image = right2;
             break;
         case "left":
         switch (spriteNum) {

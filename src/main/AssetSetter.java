@@ -52,90 +52,58 @@ public class AssetSetter {
 	}
 	
 	public void setEnemy() {
-		if (player.level == 1) {
+		if (player.level == 3) {
 			gp.enemy[0] = new Skeleton(gp);
 			gp.enemy[0].worldX = 16 * gp.tileSize;
 			gp.enemy[0].worldY = 22 * gp.tileSize;
 			gp.enemy[0].type = 1;
 			
-			gp.enemy[1] = new Skeleton(gp);
+			gp.enemy[1] = new Giant(gp);
 			gp.enemy[1].worldX = 18 * gp.tileSize;
 			gp.enemy[1].worldY = 23 * gp.tileSize;
 			gp.enemy[1].type = 1;
 			
+			
+			
+			
+			
+			
+			
+		}
+		if (player.level == 1) {
+			gp.enemy[5] = new Dragon(gp);
+			gp.enemy[5].worldX = 40 * gp.tileSize;
+			gp.enemy[5].worldY = 22 * gp.tileSize;
+			gp.enemy[5].type = 1;
+			
+		}
+		
+		if (player.level == 2) {
 			gp.enemy[2] = new Archer(gp);
 			gp.enemy[2].worldX = 13 * gp.tileSize;
 			gp.enemy[2].worldY = 27 * gp.tileSize;
 			gp.enemy[2].type = 1;
 			
+		}
+		
+		if (player.level == 4) {
 			gp.enemy[3] = new Wolf(gp);
 			gp.enemy[3].worldX = 35 * gp.tileSize;
 			gp.enemy[3].worldY = 22 * gp.tileSize;
 			gp.enemy[3].type = 1;
 			
-			gp.enemy[4] = new Giant(gp);
-			gp.enemy[4].worldX = 35 * gp.tileSize;
-			gp.enemy[4].worldY = 22 * gp.tileSize;
-			gp.enemy[4].type = 1;
-			
+		}
+		
+		if (player.level == 5) {
 			gp.enemy[5] = new Dragon(gp);
 			gp.enemy[5].worldX = 40 * gp.tileSize;
 			gp.enemy[5].worldY = 22 * gp.tileSize;
 			gp.enemy[5].type = 1;
-		}
-		if (player.level == 2) {
-			gp.enemy[7] = new Skeleton(gp);
-			gp.enemy[7].worldX = 16 * gp.tileSize;
-			gp.enemy[7].worldY = 22 * gp.tileSize;
-			gp.enemy[7].type = 1;
-			
-			gp.enemy[8] = new Skeleton(gp);
-			gp.enemy[8].worldX = 18 * gp.tileSize;
-			gp.enemy[8].worldY = 23 * gp.tileSize;
-			gp.enemy[8].type = 1;
-			
-			gp.enemy[9] = new Skeleton(gp);
-			gp.enemy[9].worldX = 13 * gp.tileSize;
-			gp.enemy[9].worldY = 27 * gp.tileSize;
-			gp.enemy[9].type = 1;
-			
-			gp.enemy[10] = new Wolf(gp);
-			gp.enemy[10].worldX = 19 * gp.tileSize;
-			gp.enemy[10].worldY = 22 * gp.tileSize;
-			gp.enemy[10].type = 1;
-			
-			gp.enemy[11] = new Wolf(gp);
-			gp.enemy[11].worldX = 22 * gp.tileSize;
-			gp.enemy[11].worldY = 23 * gp.tileSize;
-			gp.enemy[11].type = 1;
-			
-			gp.enemy[12] = new Wolf (gp);
-			gp.enemy[12].worldX = 27 * gp.tileSize;
-			gp.enemy[12].worldY = 27 * gp.tileSize;
-			gp.enemy[12].type = 1;
-			
-			gp.enemy[14] = new Skeleton(gp);
-			gp.enemy[14].worldX = 16 * gp.tileSize;
-			gp.enemy[14].worldY = 31 * gp.tileSize;
-			gp.enemy[14].type = 1;
-			
-			gp.enemy[15] = new Skeleton(gp);
-			gp.enemy[15].worldX = 1 * gp.tileSize;
-			gp.enemy[15].worldY = 23 * gp.tileSize;
-			gp.enemy[15].type = 1;
-			
-			gp.enemy[16] = new Skeleton(gp);
-			gp.enemy[16].worldX = 24 * gp.tileSize;
-			gp.enemy[16].worldY = 27 * gp.tileSize;
-			gp.enemy[16].type = 1;
-			
-			gp.enemy[17] = new Wolf(gp);
-			gp.enemy[17].worldX = 19 * gp.tileSize;
-			gp.enemy[17].worldY = 29 * gp.tileSize;
-			gp.enemy[17].type = 1;
 			
 		}
-		if (player.level == 3) {
+		
+		
+		if (player.level == 6) {
 			gp.enemy[7] = new Skeleton(gp);
 			gp.enemy[7].worldX = 16 * gp.tileSize;
 			gp.enemy[7].worldY = 22 * gp.tileSize;
