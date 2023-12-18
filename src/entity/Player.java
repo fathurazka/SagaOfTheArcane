@@ -36,7 +36,6 @@ public class Player extends Entity {
     
     //TRADE SYSTEM
     public ArrayList<Entity> TradeItems = new ArrayList<>();
-    public final int TradeItemsSize = 5;
     
     
     
@@ -365,7 +364,6 @@ public class Player extends Entity {
     public void contactEnemy(int i) {
     	if (i != 999) {
     		if(invincible == false) {
-    			life -= 1;
     			invincible = true;
     		}
     	}
