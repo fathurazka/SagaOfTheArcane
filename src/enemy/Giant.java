@@ -18,6 +18,7 @@ public class Giant extends Entity implements Enemy{
 		speed = 1;
 		maxLife = 5;
 		life = maxLife;
+		damageMelee = 4;
 		
 		//set sendiri solid area tergantung ukuran enemy
 		solidArea.x = 9;

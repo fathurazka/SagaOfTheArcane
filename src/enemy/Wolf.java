@@ -19,6 +19,8 @@ public class Wolf extends Entity implements Enemy{
 		speed = 3;
 		maxLife = 2;
 		life = maxLife;
+		damageMelee = 2;
+		
 		
 		//set sendiri solid area tergantung ukuran enemy
 		solidArea.x = 3;

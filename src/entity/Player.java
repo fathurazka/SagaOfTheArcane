@@ -365,7 +365,7 @@ public class Player extends Entity {
     public void contactEnemy(int i) {
     	if (i != 999) {
     		if(invincible == false) {
-    			life -= 1;
+    			life -= damageMelee;
     			invincible = true;
     		}
     	}

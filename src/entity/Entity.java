@@ -33,6 +33,7 @@ public class Entity {
     public Rectangle attackArea = new Rectangle (0, 0, 0, 0);
     public Weapon weapon;
     public int useCost;
+    public int damageMelee;
     
     
     //TYPE
@@ -179,12 +180,11 @@ public class Entity {
     	
     }
     
-    
+    //ini kenapa ada 2? di entity udah ada contactEnemy
     public void damagePlayer(int attack) {
     	if(gp.player.invincible == false) {
-			gp.player.life -= 1;
+			gp.player.life -= damageMelee;
 			gp.player.invincible = true;
-			
 		}
     }
     
