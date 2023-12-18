@@ -177,6 +177,8 @@ public class Entity {
             }
             spriteCounter = 0;
         }
+
+        
     	
     }
     
@@ -199,13 +201,13 @@ public class Entity {
         
         switch (this.direction) {
         case "":
-            image = right2;
+            image = up1;
             break;
         case "up":
             image = left2;
             break;
         case "down":
-            image = right2;
+            image = down1;
             break;
         case "left":
         switch (spriteNum) {

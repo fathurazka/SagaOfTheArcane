@@ -2,19 +2,19 @@ package object;
 
 import entity.Weapon;
 import main.GamePanel;
+
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public class OBJ_Arrow extends Weapon{
 	GamePanel gp;
 	String direction;
-	// BufferedImage arrowRight;
-	// BufferedImage arrowLeft;
-	// BufferedImage arrowUp;
-	// BufferedImage arrowDown;
+
 	
 	public OBJ_Arrow(GamePanel gp) {
 		super(gp);
 		this.gp = gp;
+		this.direction = direction;
 		
 		name = "Arrow";
 		speed = 8;
@@ -47,24 +47,65 @@ public class OBJ_Arrow extends Weapon{
 		down2 = setup("/projectile/arrow-down", gp.tileSize, gp.tileSize);
 		}
 
-	public void setDirection(String direction) {
-		this.direction = direction;
+	// public void setDirection(String direction) {
+	// 	this.direction = direction;
 
-		switch (direction) {
-            case "right":
-                image = right1;
-                break;
-            case "left":
-                image = left1;
-                break;
-            case "up":
-                image = up1;
-                break;
-            case "down":
-                image = down1;
-                break;
-        }
+	// 	switch (direction) {
+    //         case "right":
+    //             image = right1;
+    //             break;
+    //         case "left":
+    //             image = left1;
+    //             break;
+    //         case "up":
+    //             image = up1;
+    //             break;
+    //         case "down":
+    //             image = down1;
+    //             break;
+    //     }
+	// }
+
+	//@Override
+	public void update() {
+		super.update();
 	}
+
+	public void draw(Graphics2D g2) {
+		BufferedImage image = null;
+
+		//System.out.println("projectileDirection: " + projectileDirection);
+		switch (projectileDirection) {
+			case "up":
+				image = up1;
+				break;
+			case "down":
+				image = down1;
+				break;
+			case "left":
+				image = left1;	
+				break;
+			case "right":
+				image = right1;
+				break;
+		}
+
+		if (image != null) {
+			int screenX = worldX - gp.player.worldX + gp.player.screenX;
+			int screenY = worldY - gp.player.worldY + gp.player.screenY;
+			g2.drawImage(image, screenX, screenY, null);
+		}
+	}
+
+
+
+
+
+
+		// BufferedImage arrowRight;
+	// BufferedImage arrowLeft;
+	// BufferedImage arrowUp;
+	// BufferedImage arrowDown;
 		
     // public void getImage() {
     //     switch (direction) {

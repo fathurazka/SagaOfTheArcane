@@ -1,11 +1,12 @@
 package entity;
 
 import main.GamePanel;
+import object.OBJ_Arrow;
 
 public class Weapon extends Entity{
 	Entity user;
 	private String initialDirection;
-	private String projectileDirection;
+	protected String projectileDirection;
     
 	
 	public Weapon(GamePanel gp) {
@@ -26,13 +27,15 @@ public class Weapon extends Entity{
 		this.user = user;
 		this.life = this.maxLife;
 		
-		// Jika karakter diam, gunakan arah terakhir
+		//Jika karakter diam, gunakan arah terakhir
         if (direction.isEmpty() && user instanceof Player) {
             Player player = (Player) user;
             projectileDirection = player.getLastDirection();
         } else {
             projectileDirection = direction;
         }
+
+		// this.direction = direction != null ? direction : "left";
 	}
 	
 	public void update() {
